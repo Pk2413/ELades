@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorOutline">#000000</color> <!-- Ganti dengan kode warna yang diinginkan -->
+    <color name="colorHintText">#000000</color> <!-- Ganti dengan kode warna yang diinginkan -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="kuning">#C9A264</color>
+    <color name="background">#2E3751</color>
+    <color name="tombol">#0178BD</color>
+    <color name="tombolpress">#4A55A2</color>
+    <color name="belakang">#A0BFE0</color>
+    <color name="edittext">#D9D9D9</color>
+    <color name="outline">#6A6A6A</color>
+</resources>

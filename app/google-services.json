@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "763335909373",
+    "project_id": "e-lades-398512",
+    "storage_bucket": "e-lades-398512.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:763335909373:android:fd4e1e571fe2e783cd4394",
+        "android_client_info": {
+          "package_name": "com.ELayang.Desa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "763335909373-j91c1pq184vbeb6bd7u7um7f4vd0f8bv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ELayang.Desa",
+            "certificate_hash": "8b8718b7b92523a0215b47b3855bd03c594eff75"
+          }
+        },
+        {
+          "client_id": "763335909373-t6ek18so6dqdm9a37mbu4n83vmuqd3vn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyUY0Qa_PmaMpPZb0stSLR-lQqhGwE1f0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "763335909373-t6ek18so6dqdm9a37mbu4n83vmuqd3vn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

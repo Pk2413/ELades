@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="AppTheme" parent="Theme.MaterialComponents">
+
+    </style>
+
+    <style name="MyEditTextLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <!-- Ubah warna outline (garis tepi) -->
+        <item name="boxStrokeColor">@color/colorOutline</item>
+        <item name="boxBackgroundColor">@color/edittext</item>
+<!--        <corners android:radius="30dp" />-->
+        <!-- Ubah warna teks hint -->
+        <item name="hintTextColor">@color/colorHintText</item>
+    </style>
+
+
+    <style name="login" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <!-- Ubah warna outline (garis tepi) -->
+        <item name="boxStrokeColor">@color/outline</item>
+        <item name="boxBackgroundColor">@color/edittext</item>
+        <!--        <corners android:radius="30dp" />-->
+        <!-- Ubah warna teks hint -->
+        <item name="hintTextColor">@color/outline</item>
+    </style>
+    <style name="MyTextInputEditTextStyle" parent="Widget.MaterialComponents.TextInputEditText.OutlinedBox">
+        <!-- Atur warna background -->
+        <item name="android:background">@color/edittext</item>
+
+        <!-- Atur warna outline (garis tepi) -->
+<!--        <item name="colorControlNormal">#000000</item>-->
+    </style>
+
+
+</resources>
