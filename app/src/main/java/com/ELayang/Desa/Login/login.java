@@ -1,6 +1,8 @@
 package com.ELayang.Desa.Login;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.ELayang.Desa.Menu.dashboard;
 import com.ELayang.Desa.R;
 import com.ELayang.Desa.menu;
 import com.google.android.gms.auth.api.signin.*;
@@ -29,6 +32,8 @@ public class login extends AppCompatActivity {
     private GoogleSignInClient mGoogleSignInClient;
     EditText username, password;
     Button masuk ;
+    
+    private String KEY_NAME = "NAMA";
 
 
     @Override
@@ -43,16 +48,30 @@ public class login extends AppCompatActivity {
 
         masuk = findViewById(R.id.masuk);
         masuk.setOnClickListener(view -> {
-            String usernameText = username.getText().toString();
-            String passwordText = password.getText().toString();
+                    String usernameText = username.getText().toString();
+                    String passwordText = password.getText().toString();
 
-            if (usernameText.length() > 0) {
-                Intent buka = new Intent(this, menu.class);
-                startActivity(buka);
-            } else {
-                Toast.makeText(getApplicationContext(), "username salah", Toast.LENGTH_SHORT).show();
-            }
-        });
+                    if (usernameText.length() > 0) {
+                        Intent buka = new Intent(this, menu.class);
+                        //Bundle send
+                        buka.putExtra("username", usernameText);
+
+                        username.setText("");
+                        password.setText("");
+                        //SharedPreferences send
+//                        SharedPreferences sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
+//                        SharedPreferences.Editor editor = sharedPreferences.edit();
+//                        editor.putString("username", usernameText); // username adalah data yang telah diinputkan
+//                        editor.apply();
+
+                        startActivity(buka);
+                    } else {
+                        Toast.makeText(getApplicationContext(), "username salah", Toast.LENGTH_SHORT).show();
+                        password.setText("");
+                    }
+
+                });
+
 
 
 //        register = findViewById(R.id.register);
@@ -143,4 +162,5 @@ public class login extends AppCompatActivity {
                     }
                 });
     }
+
 }

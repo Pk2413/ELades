@@ -31,7 +31,8 @@
             android:exported="false" />
         <activity
             android:name=".menu"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".Login.register1"
             android:exported="false" />

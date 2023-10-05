@@ -19,7 +19,7 @@
         <!-- Ubah warna outline (garis tepi) -->
         <item name="boxStrokeColor">@color/outline</item>
         <item name="boxBackgroundColor">@color/edittext</item>
-        <!--        <corners android:radius="30dp" />-->
+<!--                <corners android:radius="20dp" />-->
         <!-- Ubah warna teks hint -->
         <item name="hintTextColor">@color/outline</item>
     </style>

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Menu.riwayat_surat">
+    tools:context=".Menu.riwayat_surat"
+    android:orientation="vertical">
 
 <!--    <com.google.android.material.appbar.AppBarLayout-->
 <!--        android:layout_width="match_parent"-->
@@ -21,4 +22,51 @@
 <!--    </com.google.android.material.appbar.AppBarLayout>-->
 <!--    <include layout="@layout/fragment_riwayat_surat"-->
 
-</FrameLayout>
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/backappbar">
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:text="Riwayat Surat"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:layout_marginStart="25dp"/>
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp">
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/diajukan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/button_riwayat"
+                android:text="Surat dijukan"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                app:cornerRadius="20dp"/>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/selesai"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/button_riwayat"
+                android:text="Surat Selesai"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                app:cornerRadius="20dp"/>
+        </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:id="@+id/frame_riwayat"/>
+</LinearLayout>

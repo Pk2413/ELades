@@ -5,11 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ELayang.Desa.Menu.Notifikasi;
 import com.ELayang.Desa.Menu.akun;
@@ -24,13 +28,14 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.auth.FirebaseAuth;
+//import com.google.firebase.auth.FirebaseAuth;
 
 public class menu extends AppCompatActivity {
-    private FirebaseAuth mAuth;
+//    private FirebaseAuth mAuth;
     ImageButton dasboard, notifikasi;
     BottomNavigationView bottomNavigationView;
     FloatingActionButton fab;
+    private String KEY_NAME = "NAMA";
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -38,7 +43,7 @@ public class menu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        mAuth = FirebaseAuth.getInstance();
+//        mAuth = FirebaseAuth.getInstance();
         GoogleApiClient mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API)
                 .build();
@@ -47,7 +52,7 @@ public class menu extends AppCompatActivity {
 
 // Untuk menghilangkan shadow, kita dapat menggunakan method setElevation dengan nilai 0dp
         bottomNavigationView.setElevation(0);
-        bottomNavigationView.getMenu().findItem(R.id.permintaan).setEnabled(false);
+//        bottomNavigationView.getMenu().findItem(R.id.permintaan).setEnabled(false);
 
         bottomNavigationView = findViewById(R.id.bottomNavView);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -59,7 +64,11 @@ public class menu extends AppCompatActivity {
                     selectedFragment = new dashboard();
                 }else if (item.getItemId() == R.id.notifikasi) {
                     selectedFragment = new Notifikasi();
-                }else if (item.getItemId() == R.id.riwayat) {
+                }else if (item.getItemId() == R.id.permintaan){
+                    Intent buka = new Intent(menu.this, permintaan_surat.class);
+                    startActivity(buka);
+                }
+                else if (item.getItemId() == R.id.riwayat) {
                     selectedFragment = new riwayat_surat();
                 }else if (item.getItemId() == R.id.profil) {
                     selectedFragment = new akun();
@@ -78,12 +87,35 @@ public class menu extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.frame, new dashboard())
                 .commit();
-        fab = findViewById(R.id.fab);
-        fab.setOnClickListener(v ->{
-            Intent buka = new Intent(this, permintaan_surat.class);
-            startActivity(buka);
-                });
-            }
+
+
+
+        // Mendapatkan username yang dikirimkan dari LoginActivity
+        String username = getIntent().getStringExtra("username");
+//        // Membuat fragmen
+        dashboard fragment = new dashboard();
+        fragment.setUsername(username);
+//        Toast.makeText(this, username, Toast.LENGTH_SHORT).show();
+
+//        // Membuat bundle untuk mengirim data ke fragmen
+//        Bundle bundle = new Bundle();
+//        bundle.putString("username", username);
+//
+//        // Menambahkan bundle ke fragmen
+//        fragment.setArguments(bundle);
+
+
+            // Gunakan username sesuai kebutuhan, misalnya, tampilkan pada TextView
+//            TextView hello = findViewById(R.id.hello);
+//            hello.setText("Halo, "+ username);
+
+        // Simpan username saat login berhasil
+        // Mengambil username dari SharedPreferences
+
+
+
+
+    }
 
 
 
@@ -99,7 +131,7 @@ public class menu extends AppCompatActivity {
     }
     private void signOut() {
         // Lakukan logout dari Firebase
-        mAuth.signOut();
+//        mAuth.signOut();
 
         // Lakukan logout dari Google Sign-In (jika digunakan)
         GoogleSignIn.getClient(this, GoogleSignInOptions.DEFAULT_SIGN_IN).signOut()

@@ -11,4 +11,5 @@
     <color name="belakang">#A0BFE0</color>
     <color name="edittext">#D9D9D9</color>
     <color name="outline">#6A6A6A</color>
+    <color name="backappbar">#4F5C80</color>
 </resources>
