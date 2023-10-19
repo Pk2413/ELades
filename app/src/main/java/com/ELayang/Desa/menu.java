@@ -15,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ELayang.Desa.Login.login;
 import com.ELayang.Desa.Menu.Notifikasi;
 import com.ELayang.Desa.Menu.akun;
 import com.ELayang.Desa.Menu.dashboard;
@@ -52,7 +53,7 @@ public class menu extends AppCompatActivity {
 
 // Untuk menghilangkan shadow, kita dapat menggunakan method setElevation dengan nilai 0dp
         bottomNavigationView.setElevation(0);
-//        bottomNavigationView.getMenu().findItem(R.id.permintaan).setEnabled(false);
+        bottomNavigationView.getMenu().findItem(R.id.permintaan).setEnabled(false);
 
         bottomNavigationView = findViewById(R.id.bottomNavView);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -64,10 +65,11 @@ public class menu extends AppCompatActivity {
                     selectedFragment = new dashboard();
                 }else if (item.getItemId() == R.id.notifikasi) {
                     selectedFragment = new Notifikasi();
-                }else if (item.getItemId() == R.id.permintaan){
-                    Intent buka = new Intent(menu.this, permintaan_surat.class);
-                    startActivity(buka);
                 }
+//                else if (item.getItemId() == R.id.permintaan){
+//                    Intent buka = new Intent(menu.this, permintaan_surat.class);
+//                    startActivity(buka);
+//                }
                 else if (item.getItemId() == R.id.riwayat) {
                     selectedFragment = new riwayat_surat();
                 }else if (item.getItemId() == R.id.profil) {
@@ -88,13 +90,20 @@ public class menu extends AppCompatActivity {
                 .replace(R.id.frame, new dashboard())
                 .commit();
 
+        fab = findViewById(R.id.fab);
+        fab.setOnClickListener(v ->{
+            Intent buka = new Intent(this, permintaan_surat.class);
+            startActivity(buka);
+        });
+
+
 
 
         // Mendapatkan username yang dikirimkan dari LoginActivity
-        String username = getIntent().getStringExtra("username");
+//        String username = getIntent().getStringExtra("username");
 //        // Membuat fragmen
-        dashboard fragment = new dashboard();
-        fragment.setUsername(username);
+//        dashboard fragment = new dashboard();
+//        fragment.setUsername(username);
 //        Toast.makeText(this, username, Toast.LENGTH_SHORT).show();
 
 //        // Membuat bundle untuk mengirim data ke fragmen
@@ -119,28 +128,51 @@ public class menu extends AppCompatActivity {
 
 
 
-
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-            if(keyCode == KeyEvent.KEYCODE_BACK){
-                signOut();
-//                finish();
-                return false;
-            }
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            // Lakukan logout dan intent ke halaman login
+            signOut();
+            return true;
+        }
         return super.onKeyDown(keyCode, event);
     }
-    private void signOut() {
-        // Lakukan logout dari Firebase
-//        mAuth.signOut();
 
-        // Lakukan logout dari Google Sign-In (jika digunakan)
-        GoogleSignIn.getClient(this, GoogleSignInOptions.DEFAULT_SIGN_IN).signOut()
-                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        // Logout dari Google berhasil (jika ada)
-                        finish(); // Keluar dari aktivitas setelah logout
-                    }
-                });
+    private void signOut() {
+        // ... (kode logout yang lain)
+
+        // Lakukan intent ke halaman login setelah logout
+        Intent intent = new Intent(this, login.class);
+        startActivity(intent);
+        finish(); // Optional, untuk menutup menu aktivitas
+    }
+
+//    @Override
+//    public boolean onKeyDown(int keyCode, KeyEvent event) {
+//            if(keyCode == KeyEvent.KEYCODE_BACK){
+//                signOut();
+////                finish();
+//                onBackPressed();
+//                return true;
+//            }
+//        return super.onKeyDown(keyCode, event);
+//    }
+//    private void signOut() {
+//        // Lakukan logout dari Firebase
+////        mAuth.signOut();
+//
+//        // Lakukan logout dari Google Sign-In (jika digunakan)
+//        GoogleSignIn.getClient(this, GoogleSignInOptions.DEFAULT_SIGN_IN).signOut()
+//                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Void> task) {
+//                        // Logout dari Google berhasil (jika ada)
+//                        finish(); // Keluar dari aktivitas setelah logout
+//                    }
+//                });
+//    }
+    public void onBackPressed(){
+        Toast.makeText(this, "kembali", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(menu.this,login.class));
     }
 }

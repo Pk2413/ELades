@@ -30,9 +30,14 @@ public class dashboard extends Fragment {
 
         //bundle get
         Bundle bundle = getActivity().getIntent().getExtras();
-        username = bundle.getString("username");
+
+
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("prefLogin",Context.MODE_PRIVATE);
+        String nama = sharedPreferences.getString("nama","");
         TextView hello = rootView.findViewById(R.id.hello);
-        hello.setText("Halo, "+ username);
+        hello.setText("Halo, "+ nama);
+
+
 
 
 
@@ -51,10 +56,10 @@ public class dashboard extends Fragment {
         return rootView;
     }
 
-    public dashboard(){
-
-    }
-    public void setUsername(String username){
-        this.username = username;
-    }
+//    public dashboard(){
+//
+//    }
+//    public void setUsername(String username){
+//        this.username = username;
+//    }
 }
