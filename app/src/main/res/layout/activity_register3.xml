@@ -49,8 +49,10 @@
         android:layout_marginTop="100dp"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
-        style="@style/MyEditTextLayoutStyle">
+        style="@style/MyEditTextLayoutStyle"
+        app:passwordToggleEnabled="true">
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/pass1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="PASSWORD"
@@ -63,8 +65,10 @@
             android:layout_marginTop="50dp"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
-            style="@style/MyEditTextLayoutStyle">
+            style="@style/MyEditTextLayoutStyle"
+            app:passwordToggleEnabled="true">
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/pass2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:hint="KONFIRMASI PASSWORD"

@@ -52,6 +52,7 @@
 
         style="@style/MyEditTextLayoutStyle">
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/kode_otp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="KODE OTP"

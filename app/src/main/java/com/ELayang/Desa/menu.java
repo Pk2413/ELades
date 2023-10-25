@@ -29,10 +29,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-//import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class menu extends AppCompatActivity {
-//    private FirebaseAuth mAuth;
+    private FirebaseAuth mAuth;
     ImageButton dasboard, notifikasi;
     BottomNavigationView bottomNavigationView;
     FloatingActionButton fab;
@@ -142,8 +142,20 @@ public class menu extends AppCompatActivity {
         // ... (kode logout yang lain)
 
         // Lakukan intent ke halaman login setelah logout
-        Intent intent = new Intent(this, login.class);
-        startActivity(intent);
+//        Intent intent = new Intent(this, login.class);
+//        startActivity(intent);
+
+//        mAuth.signOut();
+//
+        // Lakukan logout dari Google Sign-In (jika digunakan)
+        GoogleSignIn.getClient(this, GoogleSignInOptions.DEFAULT_SIGN_IN).signOut()
+                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        // Logout dari Google berhasil (jika ada)
+                        finish(); // Keluar dari aktivitas setelah logout
+                    }
+                });
         finish(); // Optional, untuk menutup menu aktivitas
     }
 

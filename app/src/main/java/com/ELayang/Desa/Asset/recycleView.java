@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ELayang.Desa.R;
@@ -32,6 +33,7 @@ private ArrayList<settergetter> data;
     public void onBindViewHolder(@NonNull recycleViewHolder holder, int position) {
         holder.nama.setText(data.get(position).getNama());
         holder.keterangan.setText(data.get(position).getKeterangan());
+        holder.icon.setImageResource(R.drawable.notif);
     }
 
     @Override
@@ -41,11 +43,13 @@ private ArrayList<settergetter> data;
     }
     public class recycleViewHolder extends  RecyclerView.ViewHolder{
         private TextView  nama, keterangan;
+        private ImageView icon;
 
         public recycleViewHolder(View view){
             super(view);
             nama = (TextView) view.findViewById(R.id.textsatu);
             keterangan = (TextView)  view.findViewById(R.id.textdua);
+            icon = view.findViewById(R.id.ikon);
         }
     }
 }

@@ -9,6 +9,8 @@
     app:cardCornerRadius="6dp"
     android:layout_marginBottom="20dp"
     android:backgroundTint="@color/edittext"
+    android:onClick="kilk"
+    android:id="@+id/cardklik"
     >
 
     <LinearLayout
@@ -17,6 +19,7 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/ikon"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:src="@drawable/akun"/>

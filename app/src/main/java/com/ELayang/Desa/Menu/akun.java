@@ -47,6 +47,7 @@ Button keluar;
             editor.apply();
             Intent buka = new Intent(getActivity(), login.class);
             startActivity(buka);
+
         });
 
 

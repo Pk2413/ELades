@@ -2,16 +2,16 @@ package com.ELayang.Desa.DataModel;
 
 import java.util.ArrayList;
 
-public class ResponSurat {
-    public int kode;
+public class ResponSkck {
+    public boolean kode;
     String pesan;
-    ArrayList <ModelSurat> data;
+    ArrayList<ModelSkck> data;
 
-    public int getKode() {
+    public boolean isKode() {
         return kode;
     }
 
-    public void setKode(int kode) {
+    public void setKode(boolean kode) {
         this.kode = kode;
     }
 
@@ -20,14 +20,14 @@ public class ResponSurat {
     }
 
     public void setPesan(String pesan) {
-        pesan = pesan;
+        this.pesan = pesan;
     }
 
-    public ArrayList<ModelSurat> getdata() {
+    public ArrayList<ModelSkck> getData() {
         return data;
     }
 
-    public void setdata(ArrayList<ModelSurat> data) {
+    public void setData(ArrayList<ModelSkck> data) {
         this.data = data;
     }
 }

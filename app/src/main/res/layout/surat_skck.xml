@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Surat.SKCK">
+
+        <ImageButton
+            android:onClick="kembali"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@android:color/transparent"
+            android:rotation="180"
+            android:scaleType="fitXY"
+            android:src="@drawable/kembali_panah"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kode Surat"
+            android:textSize="22dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:layout_marginTop="15dp"
+            android:id="@+id/kode_surat"/>
+        <TextView
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/kode_surat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Keterangan"
+            android:textSize="16dp"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:layout_marginTop="10dp"
+            android:id="@+id/keterangan"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/keterangan"
+            android:layout_marginTop="20dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+                <TextView
+                    android:id="@+id/t_nik"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:layout_marginStart="5dp"
+                    android:text="NIK" />
+
+                <EditText
+                    android:id="@+id/e_nik"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="NIK" />
+</LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp">
+                        <TextView
+                            android:id="@+id/t_nama"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:textSize="16dp"
+                            android:layout_marginStart="5dp"
+                            android:text="NAMA" />
+
+                        <EditText
+                            android:id="@+id/e_nama"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="NAMA" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp">
+                        <TextView
+                            android:id="@+id/t_tempat_lahir"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:textSize="16dp"
+                            android:layout_marginStart="5dp"
+                            android:text="TEMPAT LAHIR" />
+
+                        <EditText
+                            android:id="@+id/e_tempat_lahir"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="TEMPAT LAHIR" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp">
+                        <TextView
+                            android:id="@+id/t_kebangsaan"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:textSize="16dp"
+                            android:layout_marginStart="5dp"
+                            android:text="KEBANGSAAN" />
+
+                        <EditText
+                            android:id="@+id/e_kebangsaan"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="KEBANGSAAN" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp">
+                        <TextView
+                            android:id="@+id/t_agama"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:textSize="16dp"
+                            android:layout_marginStart="5dp"
+                            android:text="AGAMA" />
+
+                        <EditText
+                            android:id="@+id/e_agama"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="AGAMA" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp">
+                        <TextView
+                            android:id="@+id/t_kawin"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:textSize="16dp"
+                            android:layout_marginStart="5dp"
+                            android:text="STATUS PERKAWINAN" />
+
+                        <EditText
+                            android:id="@+id/e_kawin"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="STATUS PERKAWINAN" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp">
+                        <TextView
+                            android:id="@+id/t_pekerjaan"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:textSize="16dp"
+                            android:layout_marginStart="5dp"
+                            android:text="PEKERJAAN" />
+
+                        <EditText
+                            android:id="@+id/e_pekerjaan"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="PEKERJAAN" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp">
+                        <TextView
+                            android:id="@+id/t_tempat_tinggal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:textSize="16dp"
+                            android:layout_marginStart="5dp"
+                            android:text="TEMPAT TINGGAL" />
+
+                        <EditText
+                            android:id="@+id/e_tempat_tinggal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="TEMPAT TINGGAL" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/kirim"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="KIRIM"
+                    android:background="@color/tombol"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="40dp"
+                    android:paddingStart="40dp"
+                    android:paddingEnd="40dp"/>
+
+        </LinearLayout>
+
+
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

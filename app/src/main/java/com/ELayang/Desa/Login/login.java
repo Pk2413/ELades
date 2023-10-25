@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,6 +37,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -68,9 +70,12 @@ public class login extends AppCompatActivity {
 
         EditText username = findViewById(R.id.username),
                 password = findViewById(R.id.password);
-
+        username.setText("user");
+        password.setText("user");
         masuk = findViewById(R.id.masuk);
         masuk.setOnClickListener(view -> {
+
+
                     String usernameText = username.getText().toString();
                     String passwordText = password.getText().toString();
 
@@ -106,6 +111,7 @@ public class login extends AppCompatActivity {
 //                            pindah.putExtra("username", username);
                             startActivity(pindah);
 //                                    overridePendingTransition(R.anim.layout_in, R.anim.layout_out);
+                            finish();
 
                         } else if (response.body().kode == 0) {
                             username.requestFocus();
@@ -119,7 +125,6 @@ public class login extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<ModelResponse> call, Throwable t) {
                         Toast.makeText(login.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-                        Toast.makeText(login.this, "Error Disini", Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -152,19 +157,6 @@ public class login extends AppCompatActivity {
                 });
 
 
-
-//        register = findViewById(R.id.register);
-//        register.setOnClickListener(view -> {
-//            Intent buka = new Intent(this, register1.class);
-//            startActivity(buka);
-//        });
-
-//        lupaPasssword = findViewById(R.id.lupapassword);
-//        lupaPasssword.setOnClickListener(view -> {
-//            Intent buka = new Intent(this, lupa_password.class);
-//            startActivity(buka);
-//        });
-
         // firebase
         SignInButton login;
         login = findViewById(R.id.login_google);
@@ -180,11 +172,12 @@ public class login extends AppCompatActivity {
             googleSignIn();
         });
 
-        if (mAuth.getCurrentUser() != null){
-            Intent buka = new Intent(login.this, menu.class);
-            startActivity(buka);
-            finish();
-        }
+//        if (mAuth.getCurrentUser() != null){
+//            Intent buka = new Intent(login.this, menu.class);
+//            startActivity(buka);
+//            finish();
+//        }
+
     }
     public void bregister(View view){
         Intent buka = new Intent(this, register1.class);
@@ -217,6 +210,9 @@ public class login extends AppCompatActivity {
     }
 
     private void firebaseAsuth(String idToken) {
+        SharedPreferences sharedPreferences = getSharedPreferences("prefLogin",MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken,null);
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -225,7 +221,15 @@ public class login extends AppCompatActivity {
                         if(task.isSuccessful()){
                             FirebaseUser user = mAuth.getCurrentUser();
 
-//                            HashMap<String,Object> map = new HashMap<>();
+//                            ModelUsers user ;
+//                            editor.putString("username", user.get());
+//                            editor.putString("password", user.getPassword());
+                            editor.putString("email", user.getEmail());
+                            editor.putString("nama", user.getDisplayName());
+//                            editor.putString("kode_otp", user.getKode_otp());
+                            editor.apply();
+
+                            HashMap<String,Object> map = new HashMap<>();
 //                            map.put("id",user.getUid());
 //                            map.put("nama", user.getDisplayName());
 //                            map.put("profile",user.getPhotoUrl());
@@ -242,43 +246,9 @@ public class login extends AppCompatActivity {
                 });
     }
 
-    private void cekLogin ( String username, String password){
 
-        String cekuser = null;
-        String cekpw = null;
-
-//        try {
-//            Connection Connect =  koneksi.getKoneksi();
-//            Statement stm = Connect.createStatement();
-//            String sql = "SELECT * FROM akun_user Where username ='"+username+"' AND password='"+password+"'";
-//            ResultSet rs = stm.executeQuery(sql);
-//            while(rs.next()){
-//                cekuser = rs.getString("username");
-//                cekpw = rs.getString("password");
-//
-//            }
-//            rs.close();
-//            stm.close();
-//        }catch (SQLException e) {
-//            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
-//        } catch (ClassNotFoundException ex) {
-//            Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
-//
-//        }
-//        if(cekuser == null && cekpw == null){
-//
-//            String pesan = "username atau password salah";
-//            Toast.makeText(this, pesan, Toast.LENGTH_SHORT).show();
-////            JOptionPane.showMessageDialog(null, pesan);
-//        }else{
-//            String pesan1 = "login Berhasil";
-//            Toast.makeText(this, pesan1, Toast.LENGTH_SHORT).show();
-//            Intent buka = new Intent(this, menu.class);
-//
-//            startActivity(buka);
-//        }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        return super.onKeyDown(keyCode, event);
     }
-
-
-
 }

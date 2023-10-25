@@ -1,11 +1,11 @@
-package com.ELayang.Desa.DataModel;
+package com.ELayang.Desa.DataModel.Register;
+
 
 import java.util.ArrayList;
 
-public class ResponSurat {
+public class ResponRegister1 {
     public int kode;
-    String pesan;
-    ArrayList <ModelSurat> data;
+    String Pesan;
 
     public int getKode() {
         return kode;
@@ -16,18 +16,20 @@ public class ResponSurat {
     }
 
     public String getPesan() {
-        return pesan;
+        return Pesan;
     }
 
     public void setPesan(String pesan) {
-        pesan = pesan;
+        Pesan = pesan;
     }
 
-    public ArrayList<ModelSurat> getdata() {
+    public ArrayList<ModelRegister1> getData() {
         return data;
     }
 
-    public void setdata(ArrayList<ModelSurat> data) {
+    public void setData(ArrayList<ModelRegister1> data) {
         this.data = data;
     }
+
+    ArrayList<ModelRegister1> data;
 }
