@@ -1,6 +1,5 @@
 package com.ELayang.Desa.Login;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,10 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.ELayang.Desa.API.APIRequestData;
 import com.ELayang.Desa.API.RetroServer;
-import com.ELayang.Desa.Asset.koneksi;
-import com.ELayang.Desa.DataModel.ModelResponse;
-import com.ELayang.Desa.DataModel.ModelUsers;
-import com.ELayang.Desa.Menu.dashboard;
+import com.ELayang.Desa.DataModel.ResponLogin;
+import com.ELayang.Desa.DataModel.ModelLogin;
 import com.ELayang.Desa.R;
 import com.ELayang.Desa.menu;
 import com.google.android.gms.auth.api.signin.*;
@@ -33,13 +30,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 import org.jetbrains.annotations.Nullable;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -91,15 +82,15 @@ public class login extends AppCompatActivity {
                 password.requestFocus();
             } else{
                 APIRequestData ardData = RetroServer.konekRetrofit().create(APIRequestData.class);
-                Call<ModelResponse> getLoginResponse = ardData.login(username.getText().toString(), password.getText().toString());
-                getLoginResponse.enqueue(new Callback<ModelResponse>() {
+                Call<ResponLogin> getLoginResponse = ardData.login(username.getText().toString(), password.getText().toString());
+                getLoginResponse.enqueue(new Callback<ResponLogin>() {
                     @Override
-                    public void onResponse(Call<ModelResponse> call, Response<ModelResponse> response) {
+                    public void onResponse(Call<ResponLogin> call, Response<ResponLogin> response) {
 
                         if (response.body().kode == 1) {
 
                             // Simpan semua data pengguna ke SharedPreferences
-                            ModelUsers user = response.body().getData().get(0);
+                            ModelLogin user = response.body().getData().get(0);
                             editor.putString("username", user.getUsername());
                             editor.putString("password", user.getPassword());
                             editor.putString("email", user.getEmail());
@@ -123,7 +114,7 @@ public class login extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<ModelResponse> call, Throwable t) {
+                    public void onFailure(Call<ResponLogin> call, Throwable t) {
                         Toast.makeText(login.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });

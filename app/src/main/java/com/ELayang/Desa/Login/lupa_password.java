@@ -2,6 +2,7 @@ package com.ELayang.Desa.Login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -46,7 +47,10 @@ public class lupa_password extends AppCompatActivity {
             call.enqueue(new Callback<ResponPassword1>() {
                 @Override
                 public void onResponse(Call<ResponPassword1> call, Response<ResponPassword1> response) {
-                    if(response.body().kode == 1){
+
+                    if(response.body().kode == 0) {
+                        Toast.makeText(lupa_password.this, response.body().getPesan(), Toast.LENGTH_SHORT).show();
+                    } else if (response.body().kode == 1){
 
                         editor.putString("username",username.getText().toString());
                         editor.apply();

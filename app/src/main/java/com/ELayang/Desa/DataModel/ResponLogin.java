@@ -2,19 +2,19 @@ package com.ELayang.Desa.DataModel;
 
 import java.util.List;
 
-public class ModelResponse {
+public class ResponLogin {
 
 
     public int kode;
 
     public String pesan;
-    private List<ModelUsers> data;
+    private List<ModelLogin> data;
 
-    public List<ModelUsers> getData() {
+    public List<ModelLogin> getData() {
         return data;
     }
 
-    public void setData(List<ModelUsers> data) {
+    public void setData(List<ModelLogin> data) {
         this.data = data;
     }
 

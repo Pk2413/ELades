@@ -14,11 +14,8 @@ import android.widget.Toast;
 
 import com.ELayang.Desa.API.APIRequestData;
 import com.ELayang.Desa.API.RetroServer;
-import com.ELayang.Desa.DataModel.ModelUsers;
-import com.ELayang.Desa.DataModel.Register.ModelRegister1;
 import com.ELayang.Desa.DataModel.Register.ResponRegister1;
 import com.ELayang.Desa.R;
-import com.ELayang.Desa.menu;
 
 import retrofit2.Call;
 import retrofit2.Callback;

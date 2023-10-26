@@ -2,11 +2,14 @@ package com.ELayang.Desa.Surat;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ELayang.Desa.API.APIRequestData;
@@ -22,6 +25,8 @@ import retrofit2.Response;
 public class SKCK extends AppCompatActivity {
 
 //    ImageButton kembali;
+//    TextView kode = findViewById(R.id.kode_surat),
+//        ket= findViewById(R.id.keterangan);
 
     EditText nik ,
             nama ,
@@ -38,6 +43,15 @@ public class SKCK extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.surat_skck);
+
+//        SharedPreferences sharedPreferences = getSharedPreferences("prefSurat", Context.MODE_PRIVATE);
+//        String kode_surat = sharedPreferences.getString("kode_surat","");
+//        String keterangan = sharedPreferences.getString("keterangan","");
+//        kode.setText(kode_surat);
+//        ket.setText(keterangan);
+
+
+
 
         nik = findViewById(R.id.e_nik);
         nama = findViewById(R.id.e_nama);

@@ -2,7 +2,7 @@ package com.ELayang.Desa.API;
 
 import com.ELayang.Desa.DataModel.Lupa_Password.ResponPassword1;
 import com.ELayang.Desa.DataModel.Lupa_Password.ResponPassword2;
-import com.ELayang.Desa.DataModel.ModelResponse;
+import com.ELayang.Desa.DataModel.ResponLogin;
 import com.ELayang.Desa.DataModel.Register.ResponOTP;
 import com.ELayang.Desa.DataModel.Register.ResponRegister1;
 import com.ELayang.Desa.DataModel.Register.ResponRegister2;
@@ -19,11 +19,11 @@ import retrofit2.http.POST;
 public interface APIRequestData {
     //buat ngambil data dari API/webservice retrieve.php
     @GET("retrieve.php")
-    Call<ModelResponse> ardRetrieveData();
+    Call<ResponLogin> ardRetrieveData();
 
     @FormUrlEncoded
     @POST("Login.php")
-    Call<ModelResponse> login(
+    Call<ResponLogin> login(
             @Field("username") String username,
             @Field("password") String password
     );
@@ -32,14 +32,7 @@ public interface APIRequestData {
     @GET("surat.php")
     Call<ResponSurat> surat();
 
-//    @FormUrlEncoded
-//    @POST("ambil_surat.php")
-//    Call<ModelResponse> ambil_surat(
-//            @Field("kode_surat") String kode_surat
-//    );
 
-//    @GET("ambil_surat.php")
-//    Call<List<ModelKolom>> ambil_surat(@Path("tableName") String tableName);
 @FormUrlEncoded
 @POST("surat/skck.php")
 Call<ResponSkck> skck(

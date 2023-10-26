@@ -4,8 +4,9 @@ import java.util.ArrayList;
 
 public class ResponPassword2 {
     String pesan;
+
     public int kode;
-    ArrayList<ModelPassword2> data;
+//    ArrayList<ModelPassword2> data;
 
     public String getPesan() {
         return pesan;
@@ -23,11 +24,11 @@ public class ResponPassword2 {
         this.kode = kode;
     }
 
-    public ArrayList<ModelPassword2> getData() {
-        return data;
-    }
-
-    public void setData(ArrayList<ModelPassword2> data) {
-        this.data = data;
-    }
+//    public ArrayList<ModelPassword2> getData() {
+//        return data;
+//    }
+//
+//    public void setData(ArrayList<ModelPassword2> data) {
+//        this.data = data;
+//    }
 }

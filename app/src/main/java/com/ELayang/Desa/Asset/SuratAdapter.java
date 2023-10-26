@@ -50,13 +50,18 @@ public class SuratAdapter extends RecyclerView.Adapter<SuratAdapter.RecycleViewH
                     int position = holder.getAdapterPosition();
                     if (position != RecyclerView.NO_POSITION) {
                         ModelSurat clickedItem = data.get(position);
-                        clickListener.onClick(v); // Memanggil metode onClick dengan parameter view
                         v.setTag(clickedItem.getKode_surat()); // Menyimpan kode_surat sebagai tag
+                        clickListener.onClick(v); // Memanggil metode onClick dengan parameter view
                     }
                 }
             }
         });
     }
+
+    public  ModelSurat getItemAtPosition(int position) {
+        return data.get(position);
+    }
+
 
     @Override
     public int getItemCount() {

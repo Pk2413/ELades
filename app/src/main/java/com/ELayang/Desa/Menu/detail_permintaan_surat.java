@@ -47,6 +47,7 @@ public class detail_permintaan_surat extends AppCompatActivity {
         });
         Intent intent = getIntent();
         if (intent != null) {
+
             kodeSurat= intent.getStringExtra("kode_surat");
             String keterangan = intent.getStringExtra("keterangan");
 

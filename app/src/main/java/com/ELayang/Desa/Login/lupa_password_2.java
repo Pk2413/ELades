@@ -38,7 +38,7 @@ public class lupa_password_2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lupa_password2);
-        SharedPreferences sharedPreferences = getSharedPreferences("prefRegister", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("prefLupa_password", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         String username = sharedPreferences.getString("username","");
 
@@ -66,20 +66,20 @@ public class lupa_password_2 extends AppCompatActivity {
                 APIRequestData apiRequestData = RetroServer.konekRetrofit().create(APIRequestData.class);
                 Call<ResponPassword2> call = apiRequestData.lupa_password2(kode,password2,username);
 
+//                Toast.makeText(this, "'"+username+"'", Toast.LENGTH_SHORT).show();
+                
                 call.enqueue(new Callback<ResponPassword2>() {
                     @Override
                     public void onResponse(Call<ResponPassword2> call, Response<ResponPassword2> response) {
-                        if (response.body().kode ==0){
-                            Toast.makeText(lupa_password_2.this, "masuk kode 0", Toast.LENGTH_SHORT).show();
-                        } else if (response.body().kode == 1){
-                            Toast.makeText(lupa_password_2.this, "Registrasi Berhasil", Toast.LENGTH_SHORT).show();
+                        String pesan = response.body().getPesan();
+                        if (response.body().kode == 0){
+                            Toast.makeText(lupa_password_2.this, pesan, Toast.LENGTH_SHORT).show();
+                        } else if (response.body().kode ==1) {
+                            Toast.makeText(lupa_password_2.this, pesan, Toast.LENGTH_SHORT).show();
                             Intent buka = new Intent(lupa_password_2.this, login.class);
                             startActivity(buka);
-                            finish();
                         } else if (response.body().kode ==2 ) {
-                            Toast.makeText(lupa_password_2.this, "Registrasi gagal", Toast.LENGTH_SHORT).show();
-                        }else {
-                            Toast.makeText(lupa_password_2.this, "gk ngapa ngapa in", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(lupa_password_2.this, pesan, Toast.LENGTH_SHORT).show();
                         }
                     }
 

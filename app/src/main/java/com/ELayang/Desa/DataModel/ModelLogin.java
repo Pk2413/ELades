@@ -1,6 +1,6 @@
 package com.ELayang.Desa.DataModel;
 
-public class ModelUsers {
+public class    ModelLogin {
 
     private String username;
     private String password;
