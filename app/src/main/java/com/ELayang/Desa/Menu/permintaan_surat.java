@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.TextView;
@@ -37,7 +38,7 @@ public class permintaan_surat extends AppCompatActivity {
         setContentView(R.layout.activity_permintaan_surat);
         APIRequestData ardData = RetroServer.konekRetrofit().create(APIRequestData.class);
         Call<ResponSurat> getSuratRespons = ardData.surat();
-        SharedPreferences sharedPreferences = getSharedPreferences("prefSurat",MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("prefSurat", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         getSuratRespons.enqueue(new Callback<ResponSurat>() {
 
@@ -86,19 +87,26 @@ public class permintaan_surat extends AppCompatActivity {
 
 //        recyclerView.setSelected(true);
 
+
         SuratAdapter.setOnItemClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 TextView txtkode_surat = findViewById(R.id.textsatu);
                 TextView txtketerangan = findViewById(R.id.textdua);
 
-                String kodeSurat = (String)  txtkode_surat.getText();  // Dapatkan kode_surat dari tag
-                String keterangan = (String) txtketerangan.getText();
+                String kodeSurat = sharedPreferences.getString("kode_surat", "");
+                String keterangan = sharedPreferences.getString("keterangan", "");
+
+//                String kodeSurat = (String) txtkode_surat.getText();  // Dapatkan kode_surat dari tag
+//                String keterangan = (String) txtketerangan.getText();
                 Intent intent = new Intent(permintaan_surat.this, detail_permintaan_surat.class);
+
+//                Log.e("DATA",kodeSurat);
                 intent.putExtra("kode_surat", kodeSurat);
                 intent.putExtra("keterangan", keterangan);
                 startActivity(intent);
-                }
+            }
 
 
         });
@@ -107,9 +115,10 @@ public class permintaan_surat extends AppCompatActivity {
     // Set up RecyclerView
     private void setUpRecyclerView() {
         RecyclerView recyclerView = findViewById(R.id.view);
-        SuratAdapter suratAdapter = new SuratAdapter(data);
+        SuratAdapter suratAdapter = new SuratAdapter(data,this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(permintaan_surat.this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(suratAdapter);
     }
+
 }

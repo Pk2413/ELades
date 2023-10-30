@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".Asset.RiwayatSurat.SuratDiajukan"
+            android:exported="false" />
+        <activity
             android:name=".Surat.SKCK"
             android:exported="false" />
         <activity

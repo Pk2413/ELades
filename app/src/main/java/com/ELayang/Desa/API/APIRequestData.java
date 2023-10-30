@@ -43,7 +43,9 @@ Call<ResponSkck> skck(
         @Field("agama") String agama,
         @Field("status_perkawinan") String status,
         @Field("pekerjaan") String pekerjaan,
-        @Field("tempat_tinggal") String tinggal
+        @Field("tempat_tinggal") String tinggal,
+        @Field("username") String username,
+        @Field("jenis_kelamin") String jenis_kelamin
 
 );
 
