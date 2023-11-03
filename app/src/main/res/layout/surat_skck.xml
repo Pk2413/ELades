@@ -68,15 +68,16 @@
                     android:textColor="@color/black"
                     android:textSize="16dp"
                     android:layout_marginStart="5dp"
-                    android:text="NIK" />
+                    android:text="Nik" />
 
-                <EditText
-                    android:id="@+id/e_nik"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="NIK"
-                    android:maxLines="1"
-                    android:inputType="number"/>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/e_nik"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Masukan NIK"
+        android:inputType="number"
+        android:lines="1" />
 </LinearLayout>
 
                 <LinearLayout
@@ -91,14 +92,15 @@
                             android:textColor="@color/black"
                             android:textSize="16dp"
                             android:layout_marginStart="5dp"
-                            android:text="NAMA" />
+                            android:text="NAMA"/>
 
                         <EditText
                             android:id="@+id/e_nama"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="NAMA"
-                            android:maxLines="1"/>
+                            android:hint="Contoh : Prayoga"
+                            android:inputType="text"
+                            android:lines="1"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -124,7 +126,8 @@
                             android:layout_height="wrap_content"
                             android:hint="TEMPAT LAHIR"
                             android:layout_weight="1"
-                            android:maxLines="1"/>
+                            android:inputType="text"
+                            android:lines="1"/>
                         <EditText
                             android:id="@+id/e_tanggal"
                             android:layout_width="0dp"
@@ -155,7 +158,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="KEBANGSAAN"
-                            android:maxLines="1"/>
+                            android:inputType="text"
+                            android:lines="1"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -177,7 +181,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="AGAMA"
-                            android:maxLines="1"/>
+                            android:inputType="text"
+                            android:lines="1"/>
                 </LinearLayout>
 
             <LinearLayout
@@ -221,7 +226,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="STATUS PERKAWINAN"
-                            android:maxLines="1"/>
+                            android:inputType="text"
+                            android:lines="1"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -243,7 +249,9 @@
                             android:id="@+id/e_pekerjaan"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="PEKERJAAN" />
+                            android:hint="PEKERJAAN"
+                            android:inputType="text"
+                            android:lines="1"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -265,6 +273,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="TEMPAT TINGGAL"
+                            android:inputType="text"
+                            android:lines="1"
                             android:maxLines="3"/>
                 </LinearLayout>
 
@@ -277,7 +287,8 @@
                     android:layout_gravity="end"
                     android:layout_marginTop="40dp"
                     android:paddingStart="40dp"
-                    android:paddingEnd="40dp"/>
+                    android:paddingEnd="40dp"
+                    android:layout_marginBottom="30dp"/>
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

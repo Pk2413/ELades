@@ -69,12 +69,11 @@ public class SuratAdapter extends RecyclerView.Adapter<SuratAdapter.RecycleViewH
 //                        v.setTag(clickedItem.getKode_surat()); // Menyimpan kode_surat sebagai tag
 //                        clickListener.onClick(v); // Memanggil metode onClick dengan parameter view
 //                        Log.e("KODE : ", clickedItem.getKode_surat());
-                        Log.e("clicked :", clickedItem.getKode_surat());
+//                        Log.e("clicked :", clickedItem.getKode_surat());
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("kode_surat", clickedItem.getKode_surat());
                         editor.putString("keterangan", clickedItem.getKeterangan());
                         editor.apply();
-
                         clickListener.onClick(v);
                     }
                 }

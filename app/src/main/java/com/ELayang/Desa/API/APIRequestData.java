@@ -9,6 +9,8 @@ import com.ELayang.Desa.DataModel.Register.ResponRegister2;
 import com.ELayang.Desa.DataModel.Register.ResponRegister3;
 import com.ELayang.Desa.DataModel.ResponSkck;
 import com.ELayang.Desa.DataModel.ResponSurat;
+import com.ELayang.Desa.DataModel.RiwayatSurat.ResponDiajukan;
+import com.ELayang.Desa.DataModel.RiwayatSurat.ResponSelesai;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -92,6 +94,9 @@ Call<ResponSkck> skck(
             @Field("username") String username
     );
 
+@GET("riwayat_surat/surat_proses.php")
+    Call<ResponDiajukan> proses();
 
-
+@GET("riwayat_surat/surat_selesai.php")
+    Call<ResponSelesai> selesai();
 }

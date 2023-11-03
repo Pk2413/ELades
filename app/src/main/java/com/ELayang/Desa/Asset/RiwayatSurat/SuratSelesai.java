@@ -1,42 +1,36 @@
 package com.ELayang.Desa.Asset.RiwayatSurat;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import com.ELayang.Desa.Asset.IsiSuratAdapter;
-import com.ELayang.Desa.Asset.recycleView;
-import com.ELayang.Desa.DataModel.RiwayatSurat.ModelDiajukan;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+import com.ELayang.Desa.DataModel.RiwayatSurat.ModelSelesai;
 import com.ELayang.Desa.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SuratDiajukan extends RecyclerView.Adapter<SuratDiajukan.RecycleViewHolder> {
+public class SuratSelesai extends RecyclerView.Adapter<SuratSelesai.RecyclerViewHolder> {
 
-    List<ModelDiajukan> data ;
+    List<ModelSelesai> data ;
 
-    public SuratDiajukan(ArrayList<ModelDiajukan> data) {
+    public SuratSelesai(ArrayList<ModelSelesai> data) {
         this.data = data;
     }
 
     @NonNull
     @Override
-    public SuratDiajukan.RecycleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public SuratSelesai.RecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_surat_diajukan, parent, false);
-        return new RecycleViewHolder(itemView);
+        return new RecyclerViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SuratDiajukan.RecycleViewHolder holder, int position) {
-        ModelDiajukan item = data.get(position);
+    public void onBindViewHolder(@NonNull SuratSelesai.RecyclerViewHolder holder, int position) {
+        ModelSelesai item = data.get(position);
         holder.nomor.setText(item.getId());
         holder.nama.setText(item.getNama());
         holder.kode.setText(item.getKode_surat());
@@ -48,10 +42,9 @@ public class SuratDiajukan extends RecyclerView.Adapter<SuratDiajukan.RecycleVie
         return (data != null) ? data.size() : 0;
     }
 
-    public class RecycleViewHolder extends RecyclerView.ViewHolder {
+    public class RecyclerViewHolder extends RecyclerView.ViewHolder {
         private TextView nomor, nama, kode, tanggal;
-
-        public RecycleViewHolder(@NonNull View itemView) {
+        public RecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
             nomor =itemView.findViewById(R.id.nomor);
             nama = itemView.findViewById(R.id.nama);

@@ -103,8 +103,8 @@ public class permintaan_surat extends AppCompatActivity {
                 Intent intent = new Intent(permintaan_surat.this, detail_permintaan_surat.class);
 
 //                Log.e("DATA",kodeSurat);
-                intent.putExtra("kode_surat", kodeSurat);
-                intent.putExtra("keterangan", keterangan);
+                    intent.putExtra("kode_surat", kodeSurat);
+                    intent.putExtra("keterangan", keterangan);
                 startActivity(intent);
             }
 
