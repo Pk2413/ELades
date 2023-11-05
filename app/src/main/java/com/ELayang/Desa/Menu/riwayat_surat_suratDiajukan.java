@@ -33,14 +33,15 @@ public class riwayat_surat_suratDiajukan extends Fragment {
 
     private View view;
     private ArrayList<ModelDiajukan> data = new ArrayList<>();
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-         view = inflater.inflate(R.layout.fragment_riwayat_surat_surat_diajukan, container, false);
+        view = inflater.inflate(R.layout.fragment_riwayat_surat_surat_diajukan, container, false);
 
-         RecyclerView recyclerView = view.findViewById(R.id.D_view);
-         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        RecyclerView recyclerView = view.findViewById(R.id.D_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         APIRequestData apiRequestData = RetroServer.konekRetrofit().create(APIRequestData.class);
         Call<ResponDiajukan> call = apiRequestData.proses();
@@ -48,25 +49,26 @@ public class riwayat_surat_suratDiajukan extends Fragment {
         call.enqueue(new Callback<ResponDiajukan>() {
             @Override
             public void onResponse(Call<ResponDiajukan> call, Response<ResponDiajukan> response) {
-            ResponDiajukan responDiajukan = response.body();
-            if(responDiajukan !=null && responDiajukan.getKode() ==1) {
-                ArrayList<ModelDiajukan> list = (ArrayList<ModelDiajukan>) responDiajukan.getData();
+                ResponDiajukan responDiajukan = response.body();
+                if (responDiajukan != null && responDiajukan.getKode() == 1) {
+                    ArrayList<ModelDiajukan> list = (ArrayList<ModelDiajukan>) responDiajukan.getData();
 
-                if (list != null && !list.isEmpty()) {
-                    // Tambahkan data surat ke ArrayList dan set up RecyclerView
-                    ModelDiajukan user = response.body().getData().get(0);
-                    data.addAll(list);
+                    if (list != null && !list.isEmpty()) {
+                        // Tambahkan data surat ke ArrayList dan set up RecyclerView
+                        ModelDiajukan user = response.body().getData().get(0);
+                        data.addAll(list);
 
-                    SuratDiajukan adapter = new SuratDiajukan(data);
-                    recyclerView.setAdapter(adapter);
+                        SuratDiajukan adapter = new SuratDiajukan(data);
+                        recyclerView.setAdapter(adapter);
+                    } else {
+                        // Handle ketika data surat kosong
+                        Toast.makeText(getContext(), responDiajukan.getPesan(), Toast.LENGTH_SHORT).show();
+                    }
                 } else {
-                    // Handle ketika data surat kosong
                     Toast.makeText(getContext(), responDiajukan.getPesan(), Toast.LENGTH_SHORT).show();
                 }
-            }else{
-                Toast.makeText(getContext(), responDiajukan.getPesan(), Toast.LENGTH_SHORT).show();
             }
-            }
+
             @Override
             public void onFailure(Call<ResponDiajukan> call, Throwable t) {
                 Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
