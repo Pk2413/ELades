@@ -1,4 +1,4 @@
-package com.ELayang.Desa.DataModel;
+package com.ELayang.Desa.DataModel.Akun;
 
 import java.util.ArrayList;
 

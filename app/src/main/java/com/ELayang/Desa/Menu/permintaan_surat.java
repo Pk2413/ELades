@@ -1,12 +1,9 @@
 package com.ELayang.Desa.Menu;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ELayang.Desa.API.APIRequestData;
 import com.ELayang.Desa.API.RetroServer;
 import com.ELayang.Desa.Asset.SuratAdapter;
-import com.ELayang.Desa.DataModel.ModelLogin;
 import com.ELayang.Desa.DataModel.ModelSurat;
 import com.ELayang.Desa.DataModel.ResponSurat;
 import com.ELayang.Desa.R;

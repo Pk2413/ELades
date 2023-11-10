@@ -16,8 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.ELayang.Desa.API.APIRequestData;
 import com.ELayang.Desa.API.RetroServer;
-import com.ELayang.Desa.DataModel.ResponLogin;
-import com.ELayang.Desa.DataModel.ModelLogin;
+import com.ELayang.Desa.DataModel.Akun.ResponLogin;
+import com.ELayang.Desa.DataModel.Akun.ModelLogin;
 import com.ELayang.Desa.R;
 import com.ELayang.Desa.menu;
 import com.google.android.gms.auth.api.signin.*;

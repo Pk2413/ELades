@@ -39,12 +39,22 @@ Button keluar;
 
         });
 
+        buka = view.findViewById(R.id.buka);
+        buka.setOnClickListener(v->{
+            Intent buka = new Intent(getContext(), ganti_password.class );
+            startActivity(buka);
+        });
+
+
+
+
 
 
 
         // Inflate the layout for this fragment
         return view;
     }
+
 
 
 }

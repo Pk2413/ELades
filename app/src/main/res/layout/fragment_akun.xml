@@ -16,9 +16,10 @@
 
     <androidx.cardview.widget.CardView
         android:layout_marginTop="50dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="gantipassword"
         android:layout_marginBottom="10dp">
         <LinearLayout
             android:layout_width="match_parent"
@@ -37,7 +38,8 @@
                 android:text="GANTI PASSWORD"
                 android:textColor="@color/black"
                 android:textSize="14dp"/>
-            <ImageView
+            <ImageButton
+                android:id="@+id/buka"
                 android:layout_width="15dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"

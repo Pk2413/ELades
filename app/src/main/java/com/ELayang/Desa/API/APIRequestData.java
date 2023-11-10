@@ -1,8 +1,9 @@
 package com.ELayang.Desa.API;
 
+import com.ELayang.Desa.DataModel.Akun.ResponUpdate;
 import com.ELayang.Desa.DataModel.Lupa_Password.ResponPassword1;
 import com.ELayang.Desa.DataModel.Lupa_Password.ResponPassword2;
-import com.ELayang.Desa.DataModel.ResponLogin;
+import com.ELayang.Desa.DataModel.Akun.ResponLogin;
 import com.ELayang.Desa.DataModel.Register.ResponOTP;
 import com.ELayang.Desa.DataModel.Register.ResponRegister1;
 import com.ELayang.Desa.DataModel.Register.ResponRegister2;
@@ -143,6 +144,15 @@ public interface APIRequestData {
             @Field("jenis_kelamin_anak") String jenis_kelamin_anak,
             @Field("alamat_anak") String alamat_anak
 
+    );
+
+    @FormUrlEncoded
+    @POST("update_akun.php")
+    Call<ResponUpdate> update_akun(
+            @Field("username") String username,
+            @Field("email") String email,
+            @Field("password") String password,
+            @Field("nama") String nama
     );
 };
 

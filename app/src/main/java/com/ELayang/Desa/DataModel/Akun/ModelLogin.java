@@ -1,6 +1,6 @@
-package com.ELayang.Desa.DataModel;
+package com.ELayang.Desa.DataModel.Akun;
 
-public class ModelRegister {
+public class    ModelLogin {
 
     private String username;
     private String password;
@@ -13,16 +13,19 @@ public class ModelRegister {
         return username;
     }
 
-    public void setUsername(String username) {
+    public String setUsername(String username) {
         this.username = username;
+        return username;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public String setPassword(String password) {
         this.password = password;
+
+        return password;
     }
     public String getNo_tlp() {
         return no_tlp;
