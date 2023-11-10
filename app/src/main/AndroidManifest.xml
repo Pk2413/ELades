@@ -16,6 +16,15 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".Asset.ImagePagerAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".Surat.SKTM"
+            android:exported="false" />
+        <activity
+            android:name=".Surat.Surat_Ijin"
+            android:exported="false" />
+        <activity
             android:name=".Asset.RiwayatSurat.SuratDiajukan"
             android:exported="false" />
         <activity

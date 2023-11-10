@@ -1,4 +1,4 @@
-package com.ELayang.Desa.DataModel;
+package com.ELayang.Desa.DataModel.Surat;
 
 import java.util.ArrayList;
 

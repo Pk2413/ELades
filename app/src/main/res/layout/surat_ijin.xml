@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Surat.SKCK">
+    tools:context=".Surat.Surat_Ijin">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:text="SKCK"
+            android:text="SURAT IJIN"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="22dp"
@@ -42,7 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="SURAT KETERANGAN ADAT ISTIADAT"
+            android:text="SURAT KETERANGAN  IJIN TIDAK MASUK KERJA"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="16dp"
@@ -168,7 +168,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:text="KEBANGSAAN"
+                    android:text="KEWARGANEGARAAN"
                     android:textColor="@color/black"
                     android:textSize="16dp" />
 
@@ -177,7 +177,7 @@
                     android:id="@+id/e_kebangsaan"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:hint="KEBANGSAAN"
+                    android:hint="Contoh : WNI"
                     android:inputType="text"
                     android:background="@drawable/esurat"
                     android:lines="1" />
@@ -201,14 +201,14 @@
 
 
 
-                    <EditText
-                        android:id="@+id/e_agama"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:hint="AGAMA"
-                        android:inputType="text"
-                        android:background="@drawable/esurat"
-                        android:lines="1" />
+                <EditText
+                    android:id="@+id/e_agama"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="AGAMA"
+                    android:inputType="text"
+                    android:background="@drawable/esurat"
+                    android:lines="1" />
 
             </LinearLayout>
 
@@ -236,32 +236,7 @@
                     />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/t_kawin"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:text="STATUS PERKAWINAN"
-                    android:textColor="@color/black"
-                    android:textSize="16dp" />
-
-
-
-                    <EditText
-                        android:id="@+id/e_kawin"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:hint="STATUS PERKAWINAN"
-                        android:inputType="text"
-                        android:lines="1"
-                        android:background="@drawable/esurat"/>
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -280,14 +255,14 @@
                     android:textSize="16dp" />
 
 
-                    <EditText
-                        android:id="@+id/e_pekerjaan"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:hint="PEKERJAAN"
-                        android:inputType="text"
-                        android:lines="1"
-                        android:background="@drawable/esurat"/>
+                <EditText
+                    android:id="@+id/e_pekerjaan"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="PEKERJAAN"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:background="@drawable/esurat"/>
             </LinearLayout>
 
             <LinearLayout
@@ -297,26 +272,140 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/t_tempat_tinggal"
+                    android:id="@+id/t_alamat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:text="TEMPAT TINGGAL"
+                    android:text="ALAMAT"
                     android:textColor="@color/black"
                     android:textSize="16dp" />
 
 
 
-                    <EditText
-                        android:id="@+id/e_tempat_tinggal"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:hint="TEMPAT TINGGAL"
-                        android:inputType="text"
-                        android:lines="1"
-                        android:maxLines="3"
-                        android:background="@drawable/esurat"/>
+                <EditText
+                    android:id="@+id/e_alamat"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="ALAMAT"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:maxLines="3"
+                    android:background="@drawable/esurat"/>
             </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/t_tempat_kerja"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="TEMPAT KERJA"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+
+
+                <EditText
+                    android:id="@+id/e_tempat_kerja"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="TEMPAT KERJA"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:maxLines="3"
+                    android:background="@drawable/esurat"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/t_bagian"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="BAGIAN"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+
+
+                <EditText
+                    android:id="@+id/e_bagian"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="Contoh : Staff"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:maxLines="3"
+                    android:background="@drawable/esurat"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/t_tanggal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="TANGGAL IJIN"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+
+
+                <EditText
+                    android:id="@+id/e_tanggal_bawah"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="Tanggal"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:maxLines="3"
+                    android:background="@drawable/esurat"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/t_alasan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="ALASAN"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+
+
+                <EditText
+                    android:id="@+id/e_alasan"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="Alasan"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:maxLines="3"
+                    android:background="@drawable/esurat"/>
+            </LinearLayout>
+
 
             <Button
                 android:id="@+id/kirim"

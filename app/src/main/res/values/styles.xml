@@ -31,5 +31,35 @@
 <!--        <item name="colorControlNormal">#000000</item>-->
     </style>
 
+    <style name="Surat" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/black</item>
+        <item name="boxCornerRadiusBottomEnd">8dp</item>
+        <item name="boxCornerRadiusBottomStart">8dp</item>
+        <item name="boxCornerRadiusTopEnd">10dp</item>
+        <item name="boxCornerRadiusTopStart">10dp</item>
+        <item name="boxStrokeWidth">2dp</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:layout_marginStart">5dp</item>
+        <item name="android:layout_marginEnd">5dp</item>
+
+        <item name="android:background">@color/edittext</item>
+    </style>
+
+    <style name="ESurat" parent="Widget.AppCompat.EditText">
+        <item name="boxBackgroundColor">@color/edittext</item>
+        <item name="boxStrokeColor">@color/black</item>
+        <item name="boxCornerRadiusBottomEnd">8dp</item>
+        <item name="boxCornerRadiusBottomStart">8dp</item>
+        <item name="boxCornerRadiusTopEnd">10dp</item>
+        <item name="boxCornerRadiusTopStart">10dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:padding">12dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+    </style>
+
+
 
 </resources>

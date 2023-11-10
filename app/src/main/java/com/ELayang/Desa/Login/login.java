@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,6 +22,7 @@ import com.ELayang.Desa.R;
 import com.ELayang.Desa.menu;
 import com.google.android.gms.auth.api.signin.*;
 import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -41,8 +44,8 @@ public class login extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private GoogleSignInClient mGoogleSignInClient;
     EditText username, password;
-    Button masuk ;
-    
+    Button masuk;
+
     private String KEY_NAME = "NAMA";
 
 
@@ -52,23 +55,21 @@ public class login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
 
-
-        SharedPreferences sharedPreferences = getSharedPreferences("prefLogin",MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("prefLogin", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
 
         mAuth = FirebaseAuth.getInstance();
 
-        EditText username = findViewById(R.id.username),
-                password = findViewById(R.id.password);
+        EditText username = findViewById(R.id.username), password = findViewById(R.id.password);
         username.setText("user");
         password.setText("user");
         masuk = findViewById(R.id.masuk);
         masuk.setOnClickListener(view -> {
 
 
-                    String usernameText = username.getText().toString();
-                    String passwordText = password.getText().toString();
+            String usernameText = username.getText().toString();
+            String passwordText = password.getText().toString();
 
 
             username.setError(null);
@@ -77,10 +78,10 @@ public class login extends AppCompatActivity {
             if (TextUtils.isEmpty(usernametext)) {
                 username.setError("Username Harus Diisi");
                 username.requestFocus();
-            } else if(password.getText().toString().isEmpty()){
+            } else if (password.getText().toString().isEmpty()) {
                 password.setError("Password Harus Diisi");
                 password.requestFocus();
-            } else{
+            } else {
                 APIRequestData ardData = RetroServer.konekRetrofit().create(APIRequestData.class);
                 Call<ResponLogin> getLoginResponse = ardData.login(username.getText().toString(), password.getText().toString());
                 getLoginResponse.enqueue(new Callback<ResponLogin>() {
@@ -115,13 +116,11 @@ public class login extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<ResponLogin> call, Throwable t) {
-                        Toast.makeText(login.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(login.this, "Login failed: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
 
             }
-
-
 
 
 //
@@ -133,7 +132,7 @@ public class login extends AppCompatActivity {
 
 //                        username.setText("");
 //                        password.setText("");
-                        //SharedPreferences send
+            //SharedPreferences send
 //                        SharedPreferences sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
 //                        SharedPreferences.Editor editor = sharedPreferences.edit();
 //                        editor.putString("username", usernameText); // username adalah data yang telah diinputkan
@@ -145,7 +144,7 @@ public class login extends AppCompatActivity {
 //                        password.setText("");
 //                    }
 
-                });
+        });
 
 
         // firebase
@@ -154,12 +153,11 @@ public class login extends AppCompatActivity {
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken("763335909373-t6ek18so6dqdm9a37mbu4n83vmuqd3vn.apps.googleusercontent.com")
-                .requestEmail()
-                .build();
+                .requestEmail().build();
 
-        mGoogleSignInClient = GoogleSignIn.getClient(this,gso);
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        login.setOnClickListener(view ->{
+        login.setOnClickListener(view -> {
             googleSignIn();
         });
 
@@ -170,71 +168,86 @@ public class login extends AppCompatActivity {
 //        }
 
     }
-    public void bregister(View view){
+
+    public void bregister(View view) {
         Intent buka = new Intent(this, register1.class);
         startActivity(buka);
     }
-    public void blupapassword(View view){
+
+    public void blupapassword(View view) {
         Intent buka = new Intent(this, lupa_password.class);
         startActivity(buka);
     }
+
     //fungsi farebase
-    private void googleSignIn(){
-        Intent buka = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(buka, RC_SIGN_IN);
+    private void googleSignIn() {
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
-        super.onActivityResult(requestCode,resultCode,data);
 
-        if(requestCode == RC_SIGN_IN){
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
 
-            try{
+            try {
                 GoogleSignInAccount account = task.getResult();
                 firebaseAsuth(account.getIdToken());
-            }catch(Exception e){
+            } catch (Exception e) {
                 Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }
     }
 
     private void firebaseAsuth(String idToken) {
-        SharedPreferences sharedPreferences = getSharedPreferences("prefLogin",MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("prefLogin", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        AuthCredential credential = GoogleAuthProvider.getCredential(idToken,null);
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            FirebaseUser user = mAuth.getCurrentUser();
+        AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
+        mAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
 
 //                            ModelUsers user ;
 //                            editor.putString("username", user.get());
 //                            editor.putString("password", user.getPassword());
-                            editor.putString("email", user.getEmail());
-                            editor.putString("nama", user.getDisplayName());
+                    editor.putString("email", user.getEmail());
+                    editor.putString("nama", user.getDisplayName());
 //                            editor.putString("kode_otp", user.getKode_otp());
-                            editor.apply();
+                    editor.apply();
 
-                            HashMap<String,Object> map = new HashMap<>();
+                    HashMap<String, Object> map = new HashMap<>();
 //                            map.put("id",user.getUid());
 //                            map.put("nama", user.getDisplayName());
 //                            map.put("profile",user.getPhotoUrl());
 //
 //                            database.getReference().child("users".child(User,getUid()).setValue(map));
-                            Toast.makeText(login.this, "SELAMAT DATANG " + user.getDisplayName(), Toast.LENGTH_SHORT).show();
-                            Intent buka;
-                            buka = new Intent(login.this, menu.class);
-                            startActivity(buka);
-                        }else {
-                            Toast.makeText(login.this, "GAGAL LOGIN", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+                    Toast.makeText(login.this, "SELAMAT DATANG " + user.getDisplayName(), Toast.LENGTH_SHORT).show();
+                    Intent buka;
+                    buka = new Intent(login.this, menu.class);
+                    startActivity(buka);
+                } else {
+                    Toast.makeText(login.this, "GAGAL LOGIN", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+            // Signed in successfully, get user details
+            firebaseAsuth(account.getIdToken());
+        } catch (ApiException e) {
+            Toast.makeText(this, "Google sign in failed: " + e.getStatusCode(), Toast.LENGTH_SHORT).show();
+            Log.e("GoogleSignIn", "Google sign in failed", e);
+        }
     }
 
 

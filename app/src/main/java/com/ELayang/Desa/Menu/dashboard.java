@@ -2,6 +2,7 @@ package com.ELayang.Desa.Menu;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ELayang.Desa.Asset.imagePagerAdapter;
 import com.ELayang.Desa.R;
 
 import java.util.Objects;
@@ -36,6 +38,14 @@ public class dashboard extends Fragment {
         String nama = sharedPreferences.getString("nama","");
         TextView hello = rootView.findViewById(R.id.hello);
         hello.setText("Halo, "+ nama);
+
+        ViewPager viewPager = rootView.findViewById(R.id.viewPager);
+        imagePagerAdapter adapter = new imagePagerAdapter(getContext());
+        viewPager.setAdapter(adapter);
+
+        // Set indeks awal ke nilai tengah untuk tampilan awal yang baik
+        int middle = adapter.getCount() / 2;
+        viewPager.setCurrentItem(middle, false);
 
 
 

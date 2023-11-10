@@ -21,6 +21,8 @@ import com.ELayang.Desa.Asset.settergetter;
 import com.ELayang.Desa.DataModel.ModelKolom;
 import com.ELayang.Desa.R;
 import com.ELayang.Desa.Surat.SKCK;
+import com.ELayang.Desa.Surat.SKTM;
+import com.ELayang.Desa.Surat.Surat_Ijin;
 
 import org.chromium.base.Callback;
 
@@ -65,7 +67,18 @@ public class detail_permintaan_surat extends AppCompatActivity {
             finish();
             startActivity(intent);
 
-        }else {
+        } else if (Objects.equals(kodeSurat, "surat_ijin")) {
+            intent = new Intent(this, Surat_Ijin.class);
+            intent.putExtra("kode_surat", kodeSurat);
+            finish();
+            startActivity(intent);
+
+        } else if(Objects.equals(kodeSurat, "sktm")) {
+        intent = new Intent(this, SKTM.class);
+            finish();
+        startActivity(intent);
+        }
+        else {
             Toast.makeText(this, "maaf sedang terjadi error", Toast.LENGTH_SHORT).show();
         }
 

@@ -35,8 +35,7 @@ Button keluar;
             editor.putString("username", null);
             editor.putString("password", null);
             editor.apply();
-            Intent buka = new Intent(getActivity(), login.class);
-            startActivity(buka);
+            getActivity().finish();
 
         });
 

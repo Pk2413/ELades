@@ -15,10 +15,8 @@
 
     <string name="Jenis_kelamin">Jenis_kelamin</string>
     <string-array name="jenis_kelamin_array">
-        <item></item>
         <item>Laki-Laki</item>
         <item>Perempuan</item>
-
     </string-array>
 </resources>
 

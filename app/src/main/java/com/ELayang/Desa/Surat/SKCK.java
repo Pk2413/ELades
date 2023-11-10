@@ -6,23 +6,18 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ELayang.Desa.API.APIRequestData;
 import com.ELayang.Desa.API.RetroServer;
-import com.ELayang.Desa.DataModel.ResponSkck;
-import com.ELayang.Desa.Menu.permintaan_surat;
+import com.ELayang.Desa.DataModel.Surat.ResponSkck;
 import com.ELayang.Desa.R;
 
 import java.text.SimpleDateFormat;
@@ -128,13 +123,13 @@ public class SKCK extends AppCompatActivity {
 
                 @Override
                 public void onResponse(Call<ResponSkck> call, Response<ResponSkck> response) {
-                    ResponSkck responSkck = response.body();
-                    if (responSkck.isKode() == true) {
-                        Toast.makeText(SKCK.this, "berhasil menambahkan", Toast.LENGTH_SHORT).show();
+                        ResponSkck responSkck = response.body();
+                        if (responSkck.isKode() == true) {
+                            Toast.makeText(SKCK.this, "berhasil menambahkan", Toast.LENGTH_SHORT).show();
 
-                        kirim.setEnabled(false);
-                        finish();
-                    }
+                            kirim.setEnabled(false);
+                            finish();
+                        }
                 }
 
                 @Override
