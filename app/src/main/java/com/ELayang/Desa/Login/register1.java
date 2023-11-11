@@ -53,6 +53,9 @@ public class register1 extends AppCompatActivity {
             if (TextUtils.isEmpty(usernameText)) {
                 username.setError("Username Harus Diisi");
                 username.requestFocus();
+            }else if (username.length() < 6) {
+                username.setError("Username haurs lebih dari 6");
+                username.requestFocus();
             } else if(email.getText().toString().isEmpty()) {
                 email.setError("Email Harus Diisi");
                 email.requestFocus();

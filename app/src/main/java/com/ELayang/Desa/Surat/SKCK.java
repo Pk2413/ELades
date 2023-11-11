@@ -1,11 +1,14 @@
 package com.ELayang.Desa.Surat;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -32,6 +35,7 @@ public class SKCK extends AppCompatActivity {
 
     DatePickerDialog picker;
     String selectedGender;
+    private boolean hasilCek = true;
 
 //    ImageButton kembali;
 //    TextView kode = findViewById(R.id.kode_surat),
@@ -46,10 +50,8 @@ public class SKCK extends AppCompatActivity {
         setContentView(R.layout.surat_skck);
 
 
-
-
         SharedPreferences sharedPreferences = getSharedPreferences("prefLogin", Context.MODE_PRIVATE);
-        String username = sharedPreferences.getString("username","");
+        String username = sharedPreferences.getString("username", "");
 //        String keterangan = sharedPreferences.getString("keterangan","");
 //        kode.setText(kode_surat);
 //        ket.setText(keterangan);
@@ -90,7 +92,7 @@ public class SKCK extends AppCompatActivity {
         spinnerGender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                 selectedGender = genderOptions[position];
+                selectedGender = genderOptions[position];
 
             }
 
@@ -99,7 +101,6 @@ public class SKCK extends AppCompatActivity {
                 Toast.makeText(SKCK.this, "Pilih Jenis Kelamin", Toast.LENGTH_SHORT).show();
             }
         });
-
 
 
 //        kembali.findViewById(R.id.balikbos);
@@ -111,33 +112,62 @@ public class SKCK extends AppCompatActivity {
         Button kirim = findViewById(R.id.kirim);
         kirim.setEnabled(true);
         kirim.setOnClickListener(v -> {
-            String tempat_tanggal_lahir = tempat_lahir.getText().toString() +", "+ tanggal.getText().toString();
+            cek(nik);
+            cek(nama);
+            cek(tempat_lahir);
+            cek(kebangsaan);
+            cek(agama);
+            cek(status);
+            cek(pekerjaan);
+            cek(tempat_tinggal);
+//            cek(tanggal);
 
-            APIRequestData ardData = RetroServer.konekRetrofit().create(APIRequestData.class);
-            Call<ResponSkck> skck = ardData.skck(nama.getText().toString(), nik.getText().toString()
-                    , tempat_tanggal_lahir, kebangsaan.getText().toString(), agama.getText().toString()
-                    , status.getText().toString(), pekerjaan.getText().toString()
-                    , tempat_tinggal.getText().toString(),username, selectedGender
-                    );
-            skck.enqueue(new Callback<ResponSkck>() {
+            if (hasilCek == false) {
+                Toast.makeText(this, "Isi semua formulir terlebih dahulu", Toast.LENGTH_SHORT).show();
+            } else {
 
-                @Override
-                public void onResponse(Call<ResponSkck> call, Response<ResponSkck> response) {
-                        ResponSkck responSkck = response.body();
-                        if (responSkck.isKode() == true) {
-                            Toast.makeText(SKCK.this, "berhasil menambahkan", Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage("Apakah kamu yakin ingin melanjutkan?")
+                        .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
 
-                            kirim.setEnabled(false);
-                            finish();
-                        }
-                }
+                                String tempat_tanggal_lahir = tempat_lahir.getText().toString() + ", " + tanggal.getText().toString();
 
-                @Override
-                public void onFailure(Call<ResponSkck> call, Throwable t) {
-                    Toast.makeText(SKCK.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
+                                APIRequestData ardData = RetroServer.konekRetrofit().create(APIRequestData.class);
+                                Call<ResponSkck> skck = ardData.skck(nama.getText().toString(), nik.getText().toString()
+                                        , tempat_tanggal_lahir, kebangsaan.getText().toString(), agama.getText().toString()
+                                        , status.getText().toString(), pekerjaan.getText().toString()
+                                        , tempat_tinggal.getText().toString(), username, selectedGender
+                                );
+                                skck.enqueue(new Callback<ResponSkck>() {
 
+                                    @Override
+                                    public void onResponse(Call<ResponSkck> call, Response<ResponSkck> response) {
+                                        ResponSkck responSkck = response.body();
+                                        if (responSkck.isKode() == true) {
+                                            Toast.makeText(SKCK.this, "berhasil menambahkan", Toast.LENGTH_SHORT).show();
+
+                                            kirim.setEnabled(false);
+                                            finish();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<ResponSkck> call, Throwable t) {
+                                        Toast.makeText(SKCK.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                        })
+                        .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        })
+                        .show();
+            }
         });
 
 
@@ -155,9 +185,34 @@ public class SKCK extends AppCompatActivity {
 
 
     public void kembali(View view) {
-        finish();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Apakah kamu yakin ingin melanjutkan?")
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                })
+                .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .show();
     }
 
+    private boolean cek(EditText editText) {
+        if (TextUtils.isEmpty(editText.getText().toString())) {
+            editText.setError("Harus Diisi");
+            editText.requestFocus();
+            hasilCek = false;
+        }else {
+            hasilCek = true;
+        }
+
+        return hasilCek;
+    }
 
 
 }

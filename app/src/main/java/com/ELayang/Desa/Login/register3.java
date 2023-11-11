@@ -49,7 +49,10 @@ Button lanjut;
             if (TextUtils.isEmpty(password)) {
                 pass1.setError("Username Harus Diisi");
                 pass1.requestFocus();
-            } else if(pass2.getText().toString().isEmpty()){
+            } else if(pass1.length() <6){
+                pass1.setError("Password Harus Lebih Dari 6 Karakter");
+                pass1.requestFocus();
+            }else if(pass2.getText().toString().isEmpty()){
                 pass2.setError("Password Harus Diisi");
                 pass2.requestFocus();
             } else if(password.equals(password2)){

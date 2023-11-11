@@ -1,9 +1,11 @@
 package com.ELayang.Desa.Surat;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -115,30 +117,45 @@ public class Surat_Ijin extends AppCompatActivity {
         Button kirim = findViewById(R.id.kirim);
         kirim.setEnabled(true);
         kirim.setOnClickListener(v -> {
-            String tempat_tanggal_lahir = tempat_tgl_lahir.getText() + ", " + tgl_lahir.getText();
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Apakah kamu yakin ingin melanjutkan?")
+                    .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            String tempat_tanggal_lahir = tempat_tgl_lahir.getText() + ", " + tgl_lahir.getText();
 
-            APIRequestData apiRequestData = RetroServer.konekRetrofit().create(APIRequestData.class);
-            Call<ResponSuratijin> call = apiRequestData.suratijin(username, nama.getText().toString(),
-                    nik.getText().toString(), selectedGender, tempat_tanggal_lahir, kewarganegaraan.getText().toString(),
-                    agama.getText().toString(), pekerjaan.getText().toString(), alamat.getText().toString(),
-                    tempat_kerja.getText().toString(), bagian.getText().toString(), tanggal.getText().toString(),
-                    alasan.getText().toString());
+                            APIRequestData apiRequestData = RetroServer.konekRetrofit().create(APIRequestData.class);
+                            Call<ResponSuratijin> call = apiRequestData.suratijin(username, nama.getText().toString(),
+                                    nik.getText().toString(), selectedGender, tempat_tanggal_lahir, kewarganegaraan.getText().toString(),
+                                    agama.getText().toString(), pekerjaan.getText().toString(), alamat.getText().toString(),
+                                    tempat_kerja.getText().toString(), bagian.getText().toString(), tanggal.getText().toString(),
+                                    alasan.getText().toString());
 
-            call.enqueue(new Callback<ResponSuratijin>() {
-                @Override
-                public void onResponse(Call<ResponSuratijin> call, Response<ResponSuratijin> response) {
-                    ResponSuratijin respon = response.body();
-                    if (respon.isKode() == true) {
-                        Toast.makeText(Surat_Ijin.this, "Berhasil Ditambahkan", Toast.LENGTH_SHORT).show();
-                    }
-                }
+                            call.enqueue(new Callback<ResponSuratijin>() {
+                                @Override
+                                public void onResponse(Call<ResponSuratijin> call, Response<ResponSuratijin> response) {
+                                    ResponSuratijin respon = response.body();
+                                    if (respon.isKode() == true) {
+                                        Toast.makeText(Surat_Ijin.this, "Berhasil Ditambahkan", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
 
-                @Override
-                public void onFailure(Call<ResponSuratijin> call, Throwable t) {
-                    Toast.makeText(Surat_Ijin.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-                    Log.e("error", t.getMessage());
-                }
-            });
+                                @Override
+                                public void onFailure(Call<ResponSuratijin> call, Throwable t) {
+                                    Toast.makeText(Surat_Ijin.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                    Log.e("error", t.getMessage());
+                                }
+                            });
+                        }
+                    })
+                    .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    })
+                    .show();
+
         });
 
     }
@@ -154,6 +171,20 @@ public class Surat_Ijin extends AppCompatActivity {
     }
 
     public void kembali(View view) {
-        finish();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Apakah kamu yakin ingin melanjutkan?")
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                })
+                .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .show();
     }
 }

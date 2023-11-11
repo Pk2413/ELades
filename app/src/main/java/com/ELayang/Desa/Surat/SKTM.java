@@ -43,8 +43,8 @@ public class SKTM extends AppCompatActivity {
 
     EditText namaanak, tempatanak, tanggalanak, alamatanak;
     Spinner jeniskelaminanak;
-
     Button kirim;
+    private boolean hasilCek = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -148,6 +148,8 @@ public class SKTM extends AppCompatActivity {
         kirim = findViewById(R.id.kirim);
         kirim.setEnabled(true);
         kirim.setOnClickListener(v -> {
+
+
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("Apakah kamu yakin ingin melanjutkan?")
                     .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
@@ -226,4 +228,5 @@ public class SKTM extends AppCompatActivity {
     private void tampilkanKonfirmasi() {
 
     }
+
 }

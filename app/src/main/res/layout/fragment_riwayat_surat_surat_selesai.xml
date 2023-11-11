@@ -9,6 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/view_selesai"
-        android:layout_marginBottom="40dp"/>
+        android:layout_marginBottom="60dp"/>
 
 </FrameLayout>

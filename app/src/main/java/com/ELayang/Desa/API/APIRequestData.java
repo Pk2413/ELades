@@ -8,6 +8,7 @@ import com.ELayang.Desa.DataModel.Register.ResponOTP;
 import com.ELayang.Desa.DataModel.Register.ResponRegister1;
 import com.ELayang.Desa.DataModel.Register.ResponRegister2;
 import com.ELayang.Desa.DataModel.Register.ResponRegister3;
+import com.ELayang.Desa.DataModel.StatusDasboardRespon;
 import com.ELayang.Desa.DataModel.Surat.ResponSkck;
 import com.ELayang.Desa.DataModel.ResponSurat;
 import com.ELayang.Desa.DataModel.RiwayatSurat.ResponDiajukan;
@@ -153,6 +154,12 @@ public interface APIRequestData {
             @Field("email") String email,
             @Field("password") String password,
             @Field("nama") String nama
+    );
+
+    @FormUrlEncoded
+    @POST("dashboard.php")
+    Call<StatusDasboardRespon> dashboard(
+            @Field("username") String usernmae
     );
 };
 
