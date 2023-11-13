@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.InputType;
 import android.text.method.PasswordTransformationMethod;
 import android.view.KeyEvent;
 import android.view.View;
@@ -116,6 +115,7 @@ public class ganti_password extends AppCompatActivity {
         show.setOnClickListener(v -> {
             togglePasswordVisibility(password1);
             togglePasswordVisibility(password2);
+            reset();
         });
 
 
@@ -137,19 +137,23 @@ public class ganti_password extends AppCompatActivity {
 
     private void togglePasswordVisibility(EditText editText) {
         // Toggle antara menampilkan dan menyembunyikan password
-        isPasswordVisible = !isPasswordVisible;
+
 
         editText.setTransformationMethod(isPasswordVisible ?
                 null : PasswordTransformationMethod.getInstance());
-        if (isPasswordVisible) {
 
-            // Set jenis input kembali ke textPassword
-            editText.setInputType(isPasswordVisible ?
-                    android.text.InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD :
-                    android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-        }
+        // Set jenis input berdasarkan kondisi
+        editText.setInputType(isPasswordVisible ?
+                android.text.InputType.TYPE_CLASS_TEXT :
+                android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
         // Mengatur teks tombol berdasarkan keadaan password
         show.setText(isPasswordVisible ? "Sembunyikan Password" : "Lihat Password");
+
+    }
+
+    private boolean reset(){
+        isPasswordVisible = !isPasswordVisible;
+        return isPasswordVisible;
     }
 }
