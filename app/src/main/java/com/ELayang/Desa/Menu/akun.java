@@ -34,6 +34,7 @@ Button keluar;
             // Hapus data dari SharedPreferences
             editor.putString("username", null);
             editor.putString("password", null);
+            editor.putString("email", null);
             editor.apply();
             getActivity().finish();
 

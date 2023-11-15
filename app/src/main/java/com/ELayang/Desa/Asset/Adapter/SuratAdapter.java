@@ -1,25 +1,17 @@
-package com.ELayang.Desa.Asset;
-
-import static android.content.Context.MODE_PRIVATE;
+package com.ELayang.Desa.Asset.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ELayang.Desa.DataModel.ModelSurat;
-import com.ELayang.Desa.Menu.detail_permintaan_surat;
-import com.ELayang.Desa.Menu.permintaan_surat;
 import com.ELayang.Desa.R;
 
 import java.util.List;

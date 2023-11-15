@@ -161,6 +161,12 @@ public interface APIRequestData {
     Call<StatusDasboardRespon> dashboard(
             @Field("username") String usernmae
     );
+
+    @FormUrlEncoded
+    @POST("logingoogle.php")
+    Call<ResponLogin> logingoogle(
+            @Field("email") String email
+    );
 };
 
 

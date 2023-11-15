@@ -1,4 +1,4 @@
-package com.ELayang.Desa.Asset;
+package com.ELayang.Desa.Asset.Adapter;
 
 public class settergetter {
 

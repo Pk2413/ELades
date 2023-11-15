@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".Asset.recycleView"
+    tools:context=".Asset.Adapter.recycleView"
     app:contentPadding="10dp"
     app:cardCornerRadius="6dp"
     android:layout_marginBottom="20dp"

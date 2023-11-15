@@ -1,5 +1,7 @@
 package com.ELayang.Desa.Login;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -41,7 +43,7 @@ import retrofit2.Response;
 
 public class login extends AppCompatActivity {
     private static final int RC_SIGN_IN = 6969;
-    private FirebaseAuth mAuth;
+    private FirebaseAuth firebaseAuth;
     private GoogleSignInClient mGoogleSignInClient;
     EditText username, password;
     Button masuk;
@@ -59,9 +61,10 @@ public class login extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
 
-        mAuth = FirebaseAuth.getInstance();
+//        mAuth = FirebaseAuth.getInstance();
 
-        EditText username = findViewById(R.id.username), password = findViewById(R.id.password);
+        EditText username = findViewById(R.id.username),
+                password = findViewById(R.id.password);
         username.setText("user");
         password.setText("user");
         masuk = findViewById(R.id.masuk);
@@ -121,51 +124,19 @@ public class login extends AppCompatActivity {
                 });
 
             }
-
-
-//
-//
-//                    if (usernameText.length() > 0) {
-////                        Intent buka = new Intent(this, menu.class);
-//                         cekLogin(usernameText, passwordText);
-
-
-//                        username.setText("");
-//                        password.setText("");
-            //SharedPreferences send
-//                        SharedPreferences sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
-//                        SharedPreferences.Editor editor = sharedPreferences.edit();
-//                        editor.putString("username", usernameText); // username adalah data yang telah diinputkan
-//                        editor.apply();
-
-//                        startActivity(buka);
-//                    } else {
-//                        Toast.makeText(getApplicationContext(), "username salah", Toast.LENGTH_SHORT).show();
-//                        password.setText("");
-//                    }
-
         });
+        firebaseAuth = FirebaseAuth.getInstance();
 
-
-        // firebase
-        SignInButton login;
-        login = findViewById(R.id.login_google);
-
+        // Initialize mGoogleSignInClient
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken("763335909373-t6ek18so6dqdm9a37mbu4n83vmuqd3vn.apps.googleusercontent.com")
-                .requestEmail().build();
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        login.setOnClickListener(view -> {
-            googleSignIn();
-        });
-
-//        if (mAuth.getCurrentUser() != null){
-//            Intent buka = new Intent(login.this, menu.class);
-//            startActivity(buka);
-//            finish();
-//        }
+        SignInButton btnGoogleSignIn = findViewById(R.id.login_google);
+        btnGoogleSignIn.setOnClickListener(v -> signInWithGoogle());
 
     }
 
@@ -178,81 +149,90 @@ public class login extends AppCompatActivity {
         Intent buka = new Intent(this, lupa_password.class);
         startActivity(buka);
     }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        return super.onKeyDown(keyCode, event);
+    }
 
-    //fungsi farebase
-    private void googleSignIn() {
+
+    //firebase baru
+    public void signInWithGoogle() {
+        // Intent untuk memulai proses login dengan Google
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
-
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        // Handle hasil dari aktivitas login dengan Google
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-
-            try {
-                GoogleSignInAccount account = task.getResult();
-                firebaseAsuth(account.getIdToken());
-            } catch (Exception e) {
-                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
-            }
+            handleGoogleSignInResult(task);
         }
     }
 
-    private void firebaseAsuth(String idToken) {
-        SharedPreferences sharedPreferences = getSharedPreferences("prefLogin", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-
-        AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
-        mAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-
-//                            ModelUsers user ;
-//                            editor.putString("username", user.get());
-//                            editor.putString("password", user.getPassword());
-                    editor.putString("email", user.getEmail());
-                    editor.putString("nama", user.getDisplayName());
-//                            editor.putString("kode_otp", user.getKode_otp());
-                    editor.apply();
-
-                    HashMap<String, Object> map = new HashMap<>();
-//                            map.put("id",user.getUid());
-//                            map.put("nama", user.getDisplayName());
-//                            map.put("profile",user.getPhotoUrl());
-//
-//                            database.getReference().child("users".child(User,getUid()).setValue(map));
-                    Toast.makeText(login.this, "SELAMAT DATANG " + user.getDisplayName(), Toast.LENGTH_SHORT).show();
-                    Intent buka;
-                    buka = new Intent(login.this, menu.class);
-                    startActivity(buka);
-                } else {
-                    Toast.makeText(login.this, "GAGAL LOGIN", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
-
-    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+    private void handleGoogleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-            // Signed in successfully, get user details
-            firebaseAsuth(account.getIdToken());
+            firebaseAuthWithGoogle(account);
         } catch (ApiException e) {
-            Toast.makeText(this, "Google sign in failed: " + e.getStatusCode(), Toast.LENGTH_SHORT).show();
-            Log.e("GoogleSignIn", "Google sign in failed", e);
+            Log.w(TAG, "Google sign in failed", e);
         }
     }
 
+    private void firebaseAuthWithGoogle(GoogleSignInAccount account) {
+        AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
+        firebaseAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        // Sign in success, update UI with the signed-in user's information
+                        FirebaseUser user = firebaseAuth.getCurrentUser();
+                        if (user != null) {
+                            // User signed in, check against your local database
+                            loginWithGoogle(user.getEmail());
+                        }
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Log.w(TAG, "signInWithCredential:failure", task.getException());
+                    }
+                });
+    }
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        return super.onKeyDown(keyCode, event);
+    private void loginWithGoogle(String email) {
+        APIRequestData apiRequestData = RetroServer.konekRetrofit().create(APIRequestData.class);
+        Call<ResponLogin> call = apiRequestData.logingoogle(email);
+
+        call.enqueue(new Callback<ResponLogin>() {
+            @Override
+            public void onResponse(Call<ResponLogin> call, Response<ResponLogin> response) {
+                if(response.body().kode == 1){
+                    SharedPreferences sharedPreferences = getSharedPreferences("prefLogin", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    ModelLogin user = response.body().getData().get(0);
+                    editor.putString("username", user.getUsername());
+                    editor.putString("password", user.getPassword());
+                    editor.putString("email", user.getEmail());
+                    editor.putString("nama", user.getNama());
+                    editor.putString("kode_otp", user.getKode_otp());
+                    editor.apply();
+                    Intent pindah = new Intent(login.this, menu.class);
+                    //Bundle send
+//                            pindah.putExtra("username", username);
+                    startActivity(pindah);
+//                                    overridePendingTransition(R.anim.layout_in, R.anim.layout_out);
+                    finish();
+                }else {
+                    Toast.makeText(login.this, "kosong", Toast.LENGTH_SHORT).show();
+                    Log.e("error else", response.body().pesan);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponLogin> call, Throwable t) {
+                Log.e("error sign in google :", t.getMessage());
+            }
+        });
     }
 }

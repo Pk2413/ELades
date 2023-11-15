@@ -14,13 +14,10 @@ import android.widget.Toast;
 import com.ELayang.Desa.API.APIRequestData;
 import com.ELayang.Desa.API.RetroServer;
 import com.ELayang.Desa.Asset.RiwayatSurat.SuratDiajukan;
-import com.ELayang.Desa.Asset.SuratAdapter;
-import com.ELayang.Desa.DataModel.ModelSurat;
 import com.ELayang.Desa.DataModel.RiwayatSurat.ModelDiajukan;
 import com.ELayang.Desa.DataModel.RiwayatSurat.ResponDiajukan;
 import com.ELayang.Desa.R;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import retrofit2.Call;

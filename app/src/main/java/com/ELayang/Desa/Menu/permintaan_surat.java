@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ELayang.Desa.API.APIRequestData;
 import com.ELayang.Desa.API.RetroServer;
-import com.ELayang.Desa.Asset.SuratAdapter;
+import com.ELayang.Desa.Asset.Adapter.SuratAdapter;
 import com.ELayang.Desa.DataModel.ModelSurat;
 import com.ELayang.Desa.DataModel.ResponSurat;
 import com.ELayang.Desa.R;

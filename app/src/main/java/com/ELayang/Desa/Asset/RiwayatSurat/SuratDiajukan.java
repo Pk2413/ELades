@@ -1,18 +1,13 @@
 package com.ELayang.Desa.Asset.RiwayatSurat;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import com.ELayang.Desa.Asset.IsiSuratAdapter;
-import com.ELayang.Desa.Asset.recycleView;
 import com.ELayang.Desa.DataModel.RiwayatSurat.ModelDiajukan;
 import com.ELayang.Desa.R;
 
