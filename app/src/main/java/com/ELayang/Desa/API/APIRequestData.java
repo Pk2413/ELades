@@ -99,11 +99,17 @@ public interface APIRequestData {
             @Field("username") String username
     );
 
-    @GET("riwayat_surat/surat_proses.php")
-    Call<ResponDiajukan> proses();
+    @FormUrlEncoded
+    @POST("riwayat_surat/surat_proses.php")
+    Call<ResponDiajukan> proses(
+            @Field("username") String username
+    );
 
-    @GET("riwayat_surat/surat_selesai.php")
-    Call<ResponSelesai> selesai();
+    @FormUrlEncoded
+    @POST("riwayat_surat/surat_selesai.php")
+    Call<ResponSelesai> selesai(
+            @Field("username") String username
+    );
 
     @FormUrlEncoded
     @POST("surat/surat_ijin.php")

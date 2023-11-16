@@ -37,9 +37,10 @@ public class lupa_password extends AppCompatActivity {
         username =findViewById(R.id.username);
 
 
-
+lanjut.setEnabled(true);
         lanjut = findViewById(R.id.lanjut);
         lanjut.setOnClickListener(view -> {
+            lanjut.setEnabled(false);
 
             APIRequestData apiRequestData = RetroServer.konekRetrofit().create(APIRequestData.class);
             Call<ResponPassword1> call = apiRequestData.lupa_password1(username.getText().toString());
@@ -59,13 +60,14 @@ public class lupa_password extends AppCompatActivity {
                         startActivity(buka);
                     } else if (response.body().kode ==2) {
                         Toast.makeText(lupa_password.this, response.body().getPesan(), Toast.LENGTH_SHORT).show();
-                        
+                        enableButton(lanjut);
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ResponPassword1> call, Throwable t) {
                     Toast.makeText(lupa_password.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                    enableButton(lanjut);
                 }
             });
         });
@@ -81,5 +83,8 @@ public class lupa_password extends AppCompatActivity {
 
         }
         return super.onKeyDown(keyCode, event);
+    }
+    private void enableButton(Button button){
+        button.setEnabled(true);
     }
 }

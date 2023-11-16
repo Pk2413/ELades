@@ -80,12 +80,12 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:paddingTop="15dp"
-                            android:text="Diajukan"
+                            android:text="Masuk"
                             android:textColor="@color/black"
                             android:textSize="16dp" />
 
                         <TextView
-                            android:id="@+id/surat_diajukan"
+                            android:id="@+id/surat_masuk"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"

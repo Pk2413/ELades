@@ -79,7 +79,7 @@ ImageButton kembali;
         timer = findViewById(R.id.timer);
 
         kirimbos.setOnClickListener(view ->{
-            Toast.makeText(this, "kirim bozz", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "kirim bozz", Toast.LENGTH_SHORT).show();
 
             APIRequestData apiRequestData = RetroServer.konekRetrofit().create(APIRequestData.class);
             Call<ResponOTP> call = apiRequestData.kirim_otp(username);

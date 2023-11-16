@@ -35,6 +35,14 @@ public class register1 extends AppCompatActivity {
                 email = findViewById(R.id.email),
                 nama = findViewById(R.id.nama);
 
+        Intent intent = getIntent();
+
+        String isiemail = intent.getStringExtra("email");
+        String isinama = intent.getStringExtra("nama");
+
+        nama.setText(isinama);
+        email.setText(isiemail);
+
 
 
         SharedPreferences sharedPreferences = getSharedPreferences("prefRegister",MODE_PRIVATE);
@@ -45,8 +53,12 @@ public class register1 extends AppCompatActivity {
         kembali.setOnClickListener(view -> {
             finish();
         });
+
+
         lanjut = findViewById(R.id.lanjut);
+        lanjut.setEnabled(true);
         lanjut.setOnClickListener(view ->{
+            lanjut.setEnabled(false);
             String usernameText = username.getText().toString();
             String emailtext = email.getText().toString();
             String namatext = nama.getText().toString();
@@ -82,8 +94,10 @@ public class register1 extends AppCompatActivity {
 
                         } else if (response.body().kode == 0) {
                             Toast.makeText(register1.this, "username sudah terdaftar", Toast.LENGTH_SHORT).show();
+                            enableButton(lanjut);
                         } else if (response.body().kode == 2) {
                             Toast.makeText(register1.this, "Registrasi gagal", Toast.LENGTH_SHORT).show();
+                            enableButton(lanjut);
 
                         }
                     }
@@ -91,6 +105,7 @@ public class register1 extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<ResponRegister1> call, Throwable t) {
                         Toast.makeText(register1.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                        enableButton(lanjut);
                     }
                 });
             }
@@ -113,5 +128,8 @@ public class register1 extends AppCompatActivity {
 
         }
         return super.onKeyDown(keyCode, event);
+    }
+    private void enableButton(Button button){
+        button.setEnabled(true);
     }
 }

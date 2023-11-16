@@ -1,5 +1,7 @@
 package com.ELayang.Desa.Menu;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -42,9 +44,11 @@ public class riwayat_surat_suratSelesai extends Fragment {
 
         RecyclerView recyclerView = view.findViewById(R.id.view_selesai);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("prefLogin", Context.MODE_PRIVATE);
+        String username = sharedPreferences.getString("username", "");
 
         APIRequestData apiRequestData = RetroServer.konekRetrofit().create(APIRequestData.class);
-        Call<ResponSelesai> call = apiRequestData.selesai();
+        Call<ResponSelesai> call = apiRequestData.selesai(username);
 
         call.enqueue(new Callback<ResponSelesai>() {
             @Override

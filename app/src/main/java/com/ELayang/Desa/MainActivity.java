@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("prefLogin", Context.MODE_PRIVATE);
         String username = sharedPreferences.getString("username","");
         String nama = sharedPreferences.getString("nama","");
-        Toast.makeText(this, username+"\n"+nama, Toast.LENGTH_SHORT).show();
 
         if(username.equals("")){ new Handler().postDelayed(new Runnable() {
             @Override

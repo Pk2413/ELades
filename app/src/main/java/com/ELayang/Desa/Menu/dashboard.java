@@ -34,27 +34,28 @@ public class dashboard extends Fragment {
     private String nama;
     private String KEY_NAME = "NAMA";
     private String username;
-    TextView selesai, proses;
+    TextView selesai, proses, tolak, masuk;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.activity_dashboard,container, false);
+        View rootView = inflater.inflate(R.layout.activity_dashboard, container, false);
 
         selesai = rootView.findViewById(R.id.surat_selesai);
-        proses = rootView.findViewById(R.id.surat_diajukan);
-
+        proses = rootView.findViewById(R.id.surat_proses);
+        tolak = rootView.findViewById(R.id.surat_ditolak);
+        masuk = rootView.findViewById(R.id.surat_masuk);
 
 
         //bundle get
         Bundle bundle = getActivity().getIntent().getExtras();
 
 
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("prefLogin",Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("prefLogin", Context.MODE_PRIVATE);
         String username = sharedPreferences.getString("username", "");
-        String nama = sharedPreferences.getString("nama","");
+        String nama = sharedPreferences.getString("nama", "");
         TextView hello = rootView.findViewById(R.id.hello);
-        hello.setText("Halo, "+ nama);
+        hello.setText("Halo, " + nama);
 
         ViewPager viewPager = rootView.findViewById(R.id.viewPager);
         imagePagerAdapter adapter = new imagePagerAdapter(getContext());
@@ -66,18 +67,23 @@ public class dashboard extends Fragment {
 
 
         //status
-
         APIRequestData apiRequestData = RetroServer.konekRetrofit().create(APIRequestData.class);
         Call<StatusDasboardRespon> call = apiRequestData.dashboard(username);
         call.enqueue(new Callback<StatusDasboardRespon>() {
             @Override
             public void onResponse(Call<StatusDasboardRespon> call, Response<StatusDasboardRespon> response) {
-                if (response.body().isKode()){
+                if (response.body().isKode()) {
                     StatusDasboardModel model = response.body().getData().get(0);
-
                     selesai.setText(model.getSelesai());
                     proses.setText(model.getProses());
+                    tolak.setText(model.getTolak());
+                    masuk.setText(model.getMasuk());
 
+                } else {
+                    selesai.setText("0");
+                    proses.setText("0");
+                    tolak.setText("0");
+                    masuk.setText("0");
                 }
             }
 
@@ -86,31 +92,6 @@ public class dashboard extends Fragment {
                 Log.e("error dashboard", t.getMessage());
             }
         });
-
-
-
-
-
-
-//         //Mengambil username dari SharedPreferences
-//        SharedPreferences sharedPreferences;
-//        sharedPreferences = requireActivity().getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
-//        String username = sharedPreferences.getString("username", ""); // "" adalah nilai default jika tidak ditemukan
-//        // Menampilkan username pada TextView
-//        TextView usernameTextView = rootView.findViewById(R.id.hello); // Ganti dengan ID TextView Anda
-//        usernameTextView.setText("Halo, "+username);
-
-
-//        }
-        // Inflate the layout for this fragment
-
         return rootView;
     }
-
-//    public dashboard(){
-//
-//    }
-//    public void setUsername(String username){
-//        this.username = username;
-//    }
 }
