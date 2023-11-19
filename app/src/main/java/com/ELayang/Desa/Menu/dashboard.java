@@ -42,7 +42,6 @@ public class dashboard extends Fragment {
         View rootView = inflater.inflate(R.layout.activity_dashboard, container, false);
 
         selesai = rootView.findViewById(R.id.surat_selesai);
-        proses = rootView.findViewById(R.id.surat_proses);
         tolak = rootView.findViewById(R.id.surat_ditolak);
         masuk = rootView.findViewById(R.id.surat_masuk);
 
@@ -75,13 +74,11 @@ public class dashboard extends Fragment {
                 if (response.body().isKode()) {
                     StatusDasboardModel model = response.body().getData().get(0);
                     selesai.setText(model.getSelesai());
-                    proses.setText(model.getProses());
                     tolak.setText(model.getTolak());
                     masuk.setText(model.getMasuk());
 
                 } else {
                     selesai.setText("0");
-                    proses.setText("0");
                     tolak.setText("0");
                     masuk.setText("0");
                 }
@@ -90,6 +87,9 @@ public class dashboard extends Fragment {
             @Override
             public void onFailure(Call<StatusDasboardRespon> call, Throwable t) {
                 Log.e("error dashboard", t.getMessage());
+                selesai.setText("0");
+                tolak.setText("0");
+                masuk.setText("0");
             }
         });
         return rootView;

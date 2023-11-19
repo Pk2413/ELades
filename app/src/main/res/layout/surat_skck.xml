@@ -11,6 +11,7 @@
         android:layout_height="match_parent">
 
         <ImageButton
+            android:id="@+id/layout"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginStart="10dp"
@@ -51,6 +52,7 @@
             app:layout_constraintTop_toBottomOf="@id/kode_surat" />
 
         <LinearLayout
+            android:id="@+id/layoutedittext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -151,7 +153,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/esurat"
                         android:hint="TANGGAL"
-                        android:onClick="tanggal1"/>
+                        android:onClick="tanggal1" />
 
 
                 </LinearLayout>
@@ -177,9 +179,9 @@
                     android:id="@+id/e_kebangsaan"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
+                    android:background="@drawable/esurat"
                     android:hint="KEBANGSAAN"
                     android:inputType="text"
-                    android:background="@drawable/esurat"
                     android:lines="1" />
 
             </LinearLayout>
@@ -200,15 +202,14 @@
                     android:textSize="16dp" />
 
 
-
-                    <EditText
-                        android:id="@+id/e_agama"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:hint="AGAMA"
-                        android:inputType="text"
-                        android:background="@drawable/esurat"
-                        android:lines="1" />
+                <EditText
+                    android:id="@+id/e_agama"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/esurat"
+                    android:hint="AGAMA"
+                    android:inputType="text"
+                    android:lines="1" />
 
             </LinearLayout>
 
@@ -232,8 +233,7 @@
                     style="@style/Widget.AppCompat.Light.DropDownItem.Spinner"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_marginTop="5dp"
-                    />
+                    android:layout_marginTop="5dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -252,15 +252,14 @@
                     android:textSize="16dp" />
 
 
-
-                    <EditText
-                        android:id="@+id/e_kawin"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:hint="STATUS PERKAWINAN"
-                        android:inputType="text"
-                        android:lines="1"
-                        android:background="@drawable/esurat"/>
+                <EditText
+                    android:id="@+id/e_kawin"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/esurat"
+                    android:hint="STATUS PERKAWINAN"
+                    android:inputType="text"
+                    android:lines="1" />
             </LinearLayout>
 
             <LinearLayout
@@ -280,14 +279,14 @@
                     android:textSize="16dp" />
 
 
-                    <EditText
-                        android:id="@+id/e_pekerjaan"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:hint="PEKERJAAN"
-                        android:inputType="text"
-                        android:lines="1"
-                        android:background="@drawable/esurat"/>
+                <EditText
+                    android:id="@+id/e_pekerjaan"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/esurat"
+                    android:hint="PEKERJAAN"
+                    android:inputType="text"
+                    android:lines="1" />
             </LinearLayout>
 
             <LinearLayout
@@ -306,31 +305,48 @@
                     android:textSize="16dp" />
 
 
-
-                    <EditText
-                        android:id="@+id/e_tempat_tinggal"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:hint="TEMPAT TINGGAL"
-                        android:inputType="text"
-                        android:lines="1"
-                        android:maxLines="3"
-                        android:background="@drawable/esurat"/>
+                <EditText
+                    android:id="@+id/e_tempat_tinggal"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/esurat"
+                    android:hint="TEMPAT TINGGAL"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:maxLines="3" />
             </LinearLayout>
 
-            <Button
-                android:id="@+id/kirim"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginTop="40dp"
-                android:layout_marginBottom="30dp"
-                android:background="@color/tombol"
-                android:paddingStart="40dp"
-                android:paddingEnd="40dp"
-                android:text="KIRIM" />
 
         </LinearLayout>
+
+
+        <Button
+            android:id="@+id/kirim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="30dp"
+            android:background="@color/tombol"
+            android:paddingStart="40dp"
+            android:paddingEnd="40dp"
+            android:text="KIRIM"
+            app:layout_constraintTop_toBottomOf="@+id/layoutedittext"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+        <Button
+            android:id="@+id/update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Update"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="30dp"
+            android:background="@color/tombol"
+            android:paddingStart="40dp"
+            android:paddingEnd="40dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutedittext"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

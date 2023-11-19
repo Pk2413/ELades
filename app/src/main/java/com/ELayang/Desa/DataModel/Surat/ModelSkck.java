@@ -5,8 +5,13 @@ public class ModelSkck {
     private String nama;
     private String nik;
     private String tempat_tanggal_lahir;
+    private String tempat;
+    private String tanggal;
     private String kebangsaan;
     private String agama;
+    private String status_perkawinan;
+    private String pekerjaan;
+    private String tempat_tinggal;
 
     public String getNama() {
         return nama;
@@ -72,7 +77,19 @@ public class ModelSkck {
         this.tempat_tinggal = tempat_tinggal;
     }
 
-    private String status_perkawinan;
-    private String pekerjaan;
-    private String tempat_tinggal;
+    public String getTempat() {
+        return tempat;
+    }
+
+    public void setTempat(String tempat) {
+        this.tempat = tempat;
+    }
+
+    public String getTanggal() {
+        return tanggal;
+    }
+
+    public void setTanggal(String tanggal) {
+        this.tanggal = tanggal;
+    }
 }

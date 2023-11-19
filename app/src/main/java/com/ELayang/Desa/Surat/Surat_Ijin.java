@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,6 +21,9 @@ import android.widget.Toast;
 
 import com.ELayang.Desa.API.APIRequestData;
 import com.ELayang.Desa.API.RetroServer;
+import com.ELayang.Desa.DataModel.Surat.ModelSkck;
+import com.ELayang.Desa.DataModel.Surat.ModelSuratijin;
+import com.ELayang.Desa.DataModel.Surat.ResponSkck;
 import com.ELayang.Desa.DataModel.Surat.ResponSuratijin;
 import com.ELayang.Desa.R;
 
@@ -40,7 +45,9 @@ public class Surat_Ijin extends AppCompatActivity {
     EditText nama, nik, jenis_kelamin, tempat_tgl_lahir, tgl_lahir,
             kewarganegaraan, agama, pekerjaan, alamat, tempat_kerja, bagian, tanggal, alasan;
 
-    Button kirim;
+    Button kirim, update;
+
+    private boolean hasilCek = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +69,6 @@ public class Surat_Ijin extends AppCompatActivity {
         bagian = findViewById(R.id.e_bagian);
         tanggal = findViewById(R.id.e_tanggal_bawah);
         alasan = findViewById(R.id.e_alasan);
-
 
         tanggal.setFocusableInTouchMode(false);
         tanggal.setOnClickListener(v -> {
@@ -95,6 +101,8 @@ public class Surat_Ijin extends AppCompatActivity {
             }, year, month, day);
             picker.show();
         });
+         kirim = findViewById(R.id.kirim);
+         update = findViewById(R.id.update);
 
         String[] genderOptions = getResources().getStringArray(R.array.jenis_kelamin_array);
         Spinner spinnerGender = findViewById(R.id.e_jenis);
@@ -114,48 +122,113 @@ public class Surat_Ijin extends AppCompatActivity {
             }
         });
 
-        Button kirim = findViewById(R.id.kirim);
-        kirim.setEnabled(true);
+        Intent intent = getIntent();
+        String nopengajuan = intent.getStringExtra("nopengajuan");
+
+        if (nopengajuan != null) {
+            kirim.setVisibility(View.INVISIBLE);
+
+            String kode = "0";
+            APIRequestData apiRequestData = RetroServer.konekRetrofit().create(APIRequestData.class);
+            Call<ResponSuratijin> call = apiRequestData.ambilsuratijin(nopengajuan,kode);
+
+            call.enqueue(new Callback<ResponSuratijin>() {
+                @Override
+                public void onResponse(Call<ResponSuratijin> call, Response<ResponSuratijin> response) {
+                    if (response.body().isKode()){
+                        ModelSuratijin  model = response.body().getData().get(0);
+                        nik.setText(model.getNik());
+                        nama.setText(model.getNama());
+                        tempat_tgl_lahir.setText(model.getTempat());
+                        tgl_lahir.setText(model.getTanggal());
+                        kewarganegaraan.setText(model.getKewarganegaraan());
+                        agama.setText(model.getAgama());
+                        pekerjaan.setText(model.getPekerjaan());
+                        alamat.setText(model.getAlamat());
+                        tempat_kerja.setText(model.getTempat_Kerja());
+                        bagian.setText(model.getBagian());
+                        tanggal.setText(model.getTanggal_Ijin());
+                        alasan.setText(model.getAlasan());
+                    }else{
+                        Toast.makeText(Surat_Ijin.this, response.body().getPesan(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponSuratijin> call, Throwable t) {
+
+                }
+            });
+
+        } else {
+            update.setVisibility(View.GONE);
+        }
+
+
+//        kirim.setEnabled(true);
         kirim.setOnClickListener(v -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("Apakah kamu yakin ingin melanjutkan?")
-                    .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            String tempat_tanggal_lahir = tempat_tgl_lahir.getText() + ", " + tgl_lahir.getText();
+            cek(nama);
+            cek(nik);
+            cek(tempat_tgl_lahir);
+            cek(tempat_kerja);
+            cek(tgl_lahir);
+            cek(kewarganegaraan);
+            cek(agama);
+            cek(pekerjaan);
+            cek(alamat);
+            cek(alasan);
+            cek(bagian);
+            cek(tanggal);
 
-                            APIRequestData apiRequestData = RetroServer.konekRetrofit().create(APIRequestData.class);
-                            Call<ResponSuratijin> call = apiRequestData.suratijin(username, nama.getText().toString(),
-                                    nik.getText().toString(), selectedGender, tempat_tanggal_lahir, kewarganegaraan.getText().toString(),
-                                    agama.getText().toString(), pekerjaan.getText().toString(), alamat.getText().toString(),
-                                    tempat_kerja.getText().toString(), bagian.getText().toString(), tanggal.getText().toString(),
-                                    alasan.getText().toString());
+            if (hasilCek == false) {
+                Toast.makeText(this, "Isi semua formulir terlebih dahulu", Toast.LENGTH_SHORT).show();
+                reset();
+            } else {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage("Apakah data yang anda inputkan benar?")
+                        .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                String tempat_tanggal_lahir = tempat_tgl_lahir.getText() + ", " + tgl_lahir.getText();
 
-                            call.enqueue(new Callback<ResponSuratijin>() {
-                                @Override
-                                public void onResponse(Call<ResponSuratijin> call, Response<ResponSuratijin> response) {
-                                    ResponSuratijin respon = response.body();
-                                    if (respon.isKode() == true) {
-                                        Toast.makeText(Surat_Ijin.this, "Berhasil Ditambahkan", Toast.LENGTH_SHORT).show();
+                                APIRequestData apiRequestData = RetroServer.konekRetrofit().create(APIRequestData.class);
+                                Call<ResponSuratijin> call = apiRequestData.suratijin(username, nama.getText().toString(),
+                                        nik.getText().toString(), selectedGender, tempat_tanggal_lahir, kewarganegaraan.getText().toString(),
+                                        agama.getText().toString(), pekerjaan.getText().toString(), alamat.getText().toString(),
+                                        tempat_kerja.getText().toString(), bagian.getText().toString(), tanggal.getText().toString(),
+                                        alasan.getText().toString());
+
+
+                                call.enqueue(new Callback<ResponSuratijin>() {
+                                    @Override
+                                    public void onResponse(Call<ResponSuratijin> call, Response<ResponSuratijin> response) {
+                                        ResponSuratijin respon = response.body();
+                                        if (respon.isKode() == true) {
+                                            Toast.makeText(Surat_Ijin.this, "Berhasil Ditambahkan", Toast.LENGTH_SHORT).show();
+                                            finish();
+                                        }else{
+                                            update.setEnabled(true);
+                                        }
                                     }
-                                }
 
-                                @Override
-                                public void onFailure(Call<ResponSuratijin> call, Throwable t) {
-                                    Toast.makeText(Surat_Ijin.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-                                    Log.e("error", t.getMessage());
-                                }
-                            });
-                        }
-                    })
-                    .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
+                                    @Override
+                                    public void onFailure(Call<ResponSuratijin> call, Throwable t) {
+                                        Toast.makeText(Surat_Ijin.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                        Log.e("error", t.getMessage());
 
-                        }
-                    })
-                    .show();
+                                        update.setEnabled(true);
+                                    }
+                                });
+                            }
+                        })
+                        .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
 
+                            }
+                        })
+                        .show();
+            }
         });
 
     }
@@ -172,7 +245,7 @@ public class Surat_Ijin extends AppCompatActivity {
 
     public void kembali(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Apakah kamu yakin ingin melanjutkan?")
+        builder.setMessage("Apakah anda yakin ingin kembali?")
                 .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -186,5 +259,18 @@ public class Surat_Ijin extends AppCompatActivity {
                     }
                 })
                 .show();
+    }
+
+    private void cek(EditText editText) {
+        if (TextUtils.isEmpty(editText.getText().toString())) {
+            editText.setError("Harus Diisi");
+            editText.requestFocus();
+            hasilCek = false;
+        }else {
+            hasilCek = true;
+        }
+    }
+    private void reset(){
+        hasilCek =true;
     }
 }

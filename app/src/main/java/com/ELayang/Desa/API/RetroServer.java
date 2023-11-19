@@ -6,7 +6,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetroServer {
-    private static String server = "172.16.103.177";
+    private static String server = "192.168.1.8";
     private static final String baseURL = "http://" + server + "/coding/ELaDes%20WEB/DatabaseMobile/";
 
     private static Retrofit retro;

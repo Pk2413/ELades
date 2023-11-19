@@ -19,13 +19,15 @@ import java.util.Objects;
 
 public class detail_permintaan_surat extends AppCompatActivity {
     private ImageView kembali;
-    ArrayList<ModelKolom> modelKoloms ;
+    ArrayList<ModelKolom> modelKoloms;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_permintaan_surat);
         TextView kodeSuratTextView = null;
         String kodeSurat = null;
+        String nopengajuan = null;
 
         kembali = findViewById(R.id.kembali);
         kembali.setOnClickListener(v -> {
@@ -34,8 +36,9 @@ public class detail_permintaan_surat extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent != null) {
 
-            kodeSurat= intent.getStringExtra("kode_surat");
+            kodeSurat = intent.getStringExtra("kode_surat");
             String keterangan = intent.getStringExtra("keterangan");
+            nopengajuan = intent.getStringExtra("no_pengajuan");
 
             // Tampilkan data di TextView atau komponen lainnya
             kodeSuratTextView = findViewById(R.id.kode_surat);
@@ -45,43 +48,27 @@ public class detail_permintaan_surat extends AppCompatActivity {
             keteranganTextView.setText(keterangan);
         }
 
-        if(Objects.equals(kodeSurat, "skck")){
+        if (Objects.equals(kodeSurat, "skck")) {
             intent = new Intent(this, SKCK.class);
-            intent.putExtra("kode_surat", kodeSurat);
+            intent.putExtra("nopengajuan", nopengajuan);
             finish();
             startActivity(intent);
 
         } else if (Objects.equals(kodeSurat, "surat_ijin")) {
             intent = new Intent(this, Surat_Ijin.class);
-            intent.putExtra("kode_surat", kodeSurat);
+            intent.putExtra("nopengajuan", nopengajuan);
             finish();
             startActivity(intent);
 
-        } else if(Objects.equals(kodeSurat, "sktm")) {
-        intent = new Intent(this, SKTM.class);
+        } else if (Objects.equals(kodeSurat, "sktm")) {
+            intent = new Intent(this, SKTM.class);
+            intent.putExtra("nopengajuan", nopengajuan);
             finish();
-        startActivity(intent);
-        }
-        else {
+            startActivity(intent);
+        } else {
             Toast.makeText(this, "maaf sedang terjadi error", Toast.LENGTH_SHORT).show();
         }
 
 
-
-
-
-
-
-
-
-    }
-
-
-
-    private void addData(String nama, String keterangan, int x) {
-        modelKoloms = new ArrayList<>();
-        for (int i = 0; i < x; i++) {
-            modelKoloms.add(new ModelKolom(String.valueOf(i), keterangan));
-        }
     }
 }

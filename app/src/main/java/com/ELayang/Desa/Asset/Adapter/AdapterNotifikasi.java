@@ -6,18 +6,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ELayang.Desa.R;
 
 import java.util.ArrayList;
 
-public class recycleView extends RecyclerView.Adapter<recycleView.recycleViewHolder> {
+public class AdapterNotifikasi extends RecyclerView.Adapter<AdapterNotifikasi.recycleViewHolder> {
 
-private ArrayList<settergetter> data;
+private ArrayList<ModelNotifikasi> data;
 
-    public recycleView(ArrayList<settergetter> data) {
+    public AdapterNotifikasi(ArrayList<ModelNotifikasi> data) {
         this.data = data;
     }
 
@@ -31,9 +30,13 @@ private ArrayList<settergetter> data;
 
     @Override
     public void onBindViewHolder(@NonNull recycleViewHolder holder, int position) {
-        holder.nama.setText(data.get(position).getNama());
+        holder.nopengajuan.setText(data.get(position).getNopengajuan());
         holder.keterangan.setText(data.get(position).getKeterangan());
-        holder.icon.setImageResource(R.drawable.notif);
+        holder.kodesurat.setText(data.get(position).getKode());
+        holder.tanggal.setText(data.get(position).getTanggal());
+
+
+//        holder.icon.setImageResource(R.drawable.notif);
     }
 
     @Override
@@ -42,14 +45,16 @@ private ArrayList<settergetter> data;
         return (data != null) ? data.size():0;
     }
     public class recycleViewHolder extends  RecyclerView.ViewHolder{
-        private TextView  nama, keterangan;
-        private ImageView icon;
+        private TextView nopengajuan, keterangan, kodesurat, tanggal;
+//        private ImageView icon;
 
         public recycleViewHolder(View view){
             super(view);
-            nama = (TextView) view.findViewById(R.id.textsatu);
-            keterangan = (TextView)  view.findViewById(R.id.textdua);
-            icon = view.findViewById(R.id.ikon);
+            kodesurat = (TextView) view.findViewById(R.id.kode_surat);
+            keterangan = (TextView)  view.findViewById(R.id.keterangan);
+            nopengajuan = (TextView)  view.findViewById(R.id.no_pengajuan);
+            tanggal = view.findViewById(R.id.tanggal);
+//            icon = view.findViewById(R.id.ikon);
         }
     }
 }

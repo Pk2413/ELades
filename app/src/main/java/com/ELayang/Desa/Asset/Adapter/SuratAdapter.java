@@ -36,7 +36,7 @@ public class SuratAdapter extends RecyclerView.Adapter<SuratAdapter.RecycleViewH
     @NonNull
     @Override
     public RecycleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_recycle_view, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.surat_adapter, parent, false);
         return new RecycleViewHolder(itemView);
     }
 

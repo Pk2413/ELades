@@ -64,6 +64,7 @@
             app:layout_constraintTop_toBottomOf="@id/keterangan" />
 
         <LinearLayout
+            android:id="@+id/layoutedittext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -95,6 +96,7 @@
                     android:lines="1" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -134,7 +136,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/esurat"
                         android:hint="TANGGAL"
-                        android:onClick="tanggal1"/>
+                        android:onClick="tanggal1" />
 
 
                 </LinearLayout>
@@ -166,7 +168,6 @@
             </LinearLayout>
 
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -186,9 +187,9 @@
                     android:id="@+id/alamatbapak"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
+                    android:background="@drawable/esurat"
                     android:hint="Contoh : Pesudukuh, Bagor, Nganjuk"
                     android:inputType="text"
-                    android:background="@drawable/esurat"
                     android:lines="1" />
 
             </LinearLayout>
@@ -196,12 +197,12 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="BIODATA IBU"
-                android:textColor="@color/black"
-                android:textSize="20dp"
                 android:layout_marginTop="20dp"
+                android:text="BIODATA IBU"
                 android:textAlignment="center"
-                />
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -226,6 +227,7 @@
                     android:lines="1" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -265,7 +267,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/esurat"
                         android:hint="TANGGAL"
-                        android:onClick="tanggal1"/>
+                        android:onClick="tanggal1" />
 
 
                 </LinearLayout>
@@ -297,7 +299,6 @@
             </LinearLayout>
 
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -317,9 +318,9 @@
                     android:id="@+id/alamatibu"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
+                    android:background="@drawable/esurat"
                     android:hint="Contoh : Pesudukuh, Bagor, Nganjuk"
                     android:inputType="text"
-                    android:background="@drawable/esurat"
                     android:lines="1" />
 
             </LinearLayout>
@@ -327,12 +328,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="BIODATA ANAK"
-                android:textColor="@color/black"
-                android:textSize="20dp"
                 android:layout_marginTop="20dp"
+                android:text="BIODATA ANAK"
                 android:textAlignment="center"
-                />
+                android:textColor="@color/black"
+                android:textSize="20dp" />
 
 
             <LinearLayout
@@ -350,18 +350,16 @@
                     android:textSize="16dp" />
 
 
-
                 <EditText
                     android:id="@+id/namaanak"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
+                    android:background="@drawable/esurat"
                     android:hint="Masukan Nama"
                     android:inputType="text"
-                    android:background="@drawable/esurat"
                     android:lines="1" />
 
             </LinearLayout>
-
 
 
             <LinearLayout
@@ -403,7 +401,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/esurat"
                         android:hint="TANGGAL"
-                        android:onClick="tanggal1"/>
+                        android:onClick="tanggal1" />
 
 
                 </LinearLayout>
@@ -428,10 +426,8 @@
                     style="@style/Widget.AppCompat.Light.DropDownItem.Spinner"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_marginTop="5dp"
-                    />
+                    android:layout_marginTop="5dp" />
             </LinearLayout>
-
 
 
             <LinearLayout
@@ -454,30 +450,42 @@
                     android:id="@+id/alamatanak"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
+                    android:background="@drawable/esurat"
                     android:hint="Contoh : Pesudukuh, Bagor, Nganjuk"
                     android:inputType="text"
-                    android:lines="1"
-                    android:background="@drawable/esurat"/>
+                    android:lines="1" />
             </LinearLayout>
 
-            
-
-
-
-
-            <Button
-                android:id="@+id/kirim"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginTop="40dp"
-                android:layout_marginBottom="30dp"
-                android:background="@color/tombol"
-                android:paddingStart="40dp"
-                android:paddingEnd="40dp"
-                android:text="KIRIM" />
 
         </LinearLayout>
+
+        <Button
+            android:id="@+id/kirim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="30dp"
+            android:background="@color/tombol"
+            android:paddingStart="40dp"
+            android:paddingEnd="40dp"
+            android:text="KIRIM"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutedittext" />
+
+        <Button
+            android:id="@+id/update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="30dp"
+            android:background="@color/tombol"
+            android:paddingStart="40dp"
+            android:paddingEnd="40dp"
+            android:text="Update"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutedittext" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

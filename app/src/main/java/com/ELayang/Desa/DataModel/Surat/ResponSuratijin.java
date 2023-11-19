@@ -1,5 +1,7 @@
 package com.ELayang.Desa.DataModel.Surat;
 
+import java.util.ArrayList;
+
 public class ResponSuratijin {
 
     boolean kode;
@@ -22,5 +24,15 @@ public class ResponSuratijin {
 
     public void setPesan(String pesan) {
         Pesan = pesan;
+    }
+
+    ArrayList<ModelSuratijin> data;
+
+    public ArrayList<ModelSuratijin> getData() {
+        return data;
+    }
+
+    public void setData(ArrayList<ModelSuratijin> data) {
+        this.data = data;
     }
 }

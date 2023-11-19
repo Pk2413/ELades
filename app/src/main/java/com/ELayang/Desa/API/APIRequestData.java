@@ -173,6 +173,84 @@ public interface APIRequestData {
     Call<ResponLogin> logingoogle(
             @Field("email") String email
     );
+
+    @FormUrlEncoded
+    @POST("updatesurat/skck.php")
+    Call<ResponSkck> ambilskck(
+            @Field("no_pengajuan") String no,
+            @Field("kode") String kode
+    );
+    @FormUrlEncoded
+    @POST("updatesurat/skck.php")
+    Call<ResponSkck> updateskck(
+            @Field("no_pengajuan") String no,
+            @Field("kode") String kode,
+            @Field("nama") String nama,
+            @Field("nik") String nik,
+            @Field("tempat_tanggal_lahir") String tempat_tanggal_lahir,
+            @Field("kebangsaan") String kebangsaan,
+            @Field("agama") String agama,
+            @Field("status_perkawinan") String status,
+            @Field("pekerjaan") String pekerjaan,
+            @Field("tempat_tinggal") String tinggal,
+            @Field("jenis_kelamin") String jenis_kelamin
+    );
+
+    @FormUrlEncoded
+    @POST("updatesurat/sktm.php")
+    Call<ResponSktm> ambilsktm(
+            @Field("no_pengajuan") String no,
+            @Field("kode") String kode
+    );
+    @FormUrlEncoded
+    @POST("updatesurat/sktm.php")
+    Call<ResponSktm> updatesktm(
+            @Field("no_pengajuan") String no,
+            @Field("kode") String kode,
+
+            //bapak
+            @Field("nama_bapak") String nama_bapak,
+            @Field("tempat_tanggal_lahir_bapak") String tempat_tanggal_lahir_bapak,
+            @Field("pekerjaan_bapak") String pekerjaan_bapak,
+            @Field("alamat_bapak") String alamat_bapak,
+
+            //ibu
+            @Field("nama_ibu") String nama_ibu,
+            @Field("tempat_tanggal_lahir_ibu") String tempat_tanggal_lahir_ibu,
+            @Field("pekerjaan_ibu") String pekerjaan_ibu,
+            @Field("alamat_ibu") String alamat_ibu,
+
+            //anak
+            @Field("nama_anak") String nama_anak,
+            @Field("tempat_tanggal_lahir_anak") String tempat_tanggal_lahir_anak,
+            @Field("jenis_kelamin_anak") String jenis_kelamin_anak,
+            @Field("alamat_anak") String alamat_anak
+    );
+
+    @FormUrlEncoded
+    @POST("updatesurat/surat_ijin.php")
+    Call<ResponSuratijin> ambilsuratijin(
+            @Field("no_pengajuan") String no,
+            @Field("kode") String kode
+    );
+    @FormUrlEncoded
+    @POST("updatesurat/surat_ijin.php")
+    Call<ResponSuratijin> updatesuratijin(
+            @Field("no_pengajuan") String no,
+            @Field("kode") String kode,
+            @Field("Nama") String Nama,
+            @Field("NIK") String NIK,
+            @Field("Jenis_kelamin") String Jenis_kelamin,
+            @Field("Tempat_tanggal_lahir") String Tempat_tanggal_lahir,
+            @Field("Kewarganegaraan") String Kewarganegaraan,
+            @Field("Agama") String Agama,
+            @Field("Pekerjaan") String Pekerjaan,
+            @Field("Alamat") String Alamat,
+            @Field("Tempat_Kerja") String Tempat_Kerja,
+            @Field("Bagian") String Bagian,
+            @Field("Tanggal") String Tanggal,
+            @Field("Alasan") String Alasan
+    );
 };
 
 

@@ -10,15 +10,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ELayang.Desa.Asset.Adapter.recycleView;
-import com.ELayang.Desa.Asset.Adapter.settergetter;
+import com.ELayang.Desa.Asset.Adapter.AdapterNotifikasi;
+import com.ELayang.Desa.Asset.Adapter.ModelNotifikasi;
 import com.ELayang.Desa.R;
 
 import java.util.ArrayList;
 
 
 public class Notifikasi extends Fragment {
-    private ArrayList<settergetter> settergetters;
+    private ArrayList<ModelNotifikasi> settergetters;
 
 
 
@@ -27,10 +27,10 @@ public class Notifikasi extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        addData("hehe","huhu",15);
+        addData(15);
         View view = inflater.inflate(R.layout.fragment_notifikasi, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.view);
-        recycleView recycleView = new recycleView(settergetters);
+        AdapterNotifikasi recycleView = new AdapterNotifikasi(settergetters);
         LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(recycleView);
@@ -44,10 +44,10 @@ public class Notifikasi extends Fragment {
         return view;
     }
 
-    private void addData(String nama, String keterangan, int x) {
+    private void addData(int x) {
         settergetters = new ArrayList<>();
         for(int i=0;i<x; i++) {
-            settergetters.add(new settergetter(String.valueOf(i), "keterangan"));
+            settergetters.add(new ModelNotifikasi(String.valueOf(i), "kode_surat","69-69-6969","nyoba-nyoba dulu gk sih"));
         }
 
     }

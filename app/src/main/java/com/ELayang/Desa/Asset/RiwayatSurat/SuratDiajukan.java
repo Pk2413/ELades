@@ -3,12 +3,14 @@ package com.ELayang.Desa.Asset.RiwayatSurat;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.ELayang.Desa.DataModel.RiwayatSurat.ModelDiajukan;
+import com.ELayang.Desa.Menu.detail_permintaan_surat;
 import com.ELayang.Desa.R;
 
 import java.util.ArrayList;
@@ -36,6 +38,22 @@ public class SuratDiajukan extends RecyclerView.Adapter<SuratDiajukan.RecycleVie
         holder.nama.setText(item.getNama());
         holder.kode.setText(item.getKode_surat());
         holder.tanggal.setText(item.getTanggal());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Data dari item yang diklik
+                    String kode = item.getKode_surat();
+                    String no_pengajuan = item.getId();
+//                    String namaAdvis = item.getNama_advis();
+
+                    // Kirim data ke aktivitas selanjutnya
+                    Intent intent = new Intent(v.getContext(), detail_permintaan_surat.class);
+                    intent.putExtra("kode_surat", kode);
+                    intent.putExtra("no_pengajuan", no_pengajuan);
+//                    intent.putExtra("nama_advis", namaAdvis);
+                    v.getContext().startActivity(intent);
+                }
+            });
     }
 
     @Override

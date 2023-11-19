@@ -37,7 +37,7 @@ public class lupa_password extends AppCompatActivity {
         username =findViewById(R.id.username);
 
 
-lanjut.setEnabled(true);
+//lanjut.setEnabled(true);
         lanjut = findViewById(R.id.lanjut);
         lanjut.setOnClickListener(view -> {
             lanjut.setEnabled(false);
@@ -51,6 +51,7 @@ lanjut.setEnabled(true);
 
                     if(response.body().kode == 0) {
                         Toast.makeText(lupa_password.this, response.body().getPesan(), Toast.LENGTH_SHORT).show();
+                        enableButton(lanjut);
                     } else if (response.body().kode == 1){
 
                         editor.putString("username",username.getText().toString());

@@ -40,7 +40,7 @@
             android:name=".Menu.permintaan_surat"
             android:exported="false" />
         <activity
-            android:name=".Asset.Adapter.recycleView"
+            android:name=".Asset.Adapter.AdapterNotifikasi"
             android:exported="false" />
         <activity
             android:name=".Menu.dashboard"
