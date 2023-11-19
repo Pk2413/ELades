@@ -29,6 +29,7 @@ import com.ELayang.Desa.R;
 import com.google.android.gms.common.api.Api;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -179,6 +180,13 @@ public class SKTM extends AppCompatActivity {
                         tempatanak.setText(sktmData.getTempat_lahir_anak());
                         tanggalanak.setText(sktmData.getTanggal_lahir_anak());
                         alamatanak.setText(sktmData.getAlamat_anak());
+
+                        String jeniskelamin = sktmData.getJenis_kelamin_anak();
+
+                        String[] jenis = getResources().getStringArray(R.array.jenis_kelamin_array);
+                        int index = Arrays.asList(jenis).indexOf(jeniskelamin);
+                        jeniskelaminanak.setSelection(index);
+
                     } else {
                         Toast.makeText(SKTM.this, response.body().getPesan(), Toast.LENGTH_SHORT).show();
                     }

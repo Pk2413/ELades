@@ -29,6 +29,7 @@ import com.ELayang.Desa.R;
 import com.google.android.gms.common.api.Api;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -48,6 +49,7 @@ public class SKCK extends AppCompatActivity {
 
     EditText nik, nama, tempat_lahir, kebangsaan, agama, status, pekerjaan, tempat_tinggal, tanggal;
     Button kirim, update;
+    Spinner spinnerGender;
 
 
     @Override
@@ -63,6 +65,7 @@ public class SKCK extends AppCompatActivity {
         kirim = findViewById(R.id.kirim);
         update = findViewById(R.id.update);
 
+        spinnerGender = findViewById(R.id.e_jenis);
 
         nik = findViewById(R.id.e_nik);
         nama = findViewById(R.id.e_nama);
@@ -113,6 +116,11 @@ public class SKCK extends AppCompatActivity {
                         pekerjaan.setText(model.getPekerjaan());
                         tempat_tinggal.setText(model.getTempat_tinggal());
                         tanggal.setText(model.getTanggal());
+                        //set selected spinner
+                        String jenis = model.getJenis_kelamin();
+                        String[] jeniskelamin = getResources().getStringArray(R.array.jenis_kelamin_array);
+                        int position = Arrays.asList(jeniskelamin).indexOf(jenis);
+                        spinnerGender.setSelection(position);
                     } else {
                         Toast.makeText(SKCK.this, response.body().getPesan(), Toast.LENGTH_SHORT).show();
                     }
@@ -130,7 +138,7 @@ public class SKCK extends AppCompatActivity {
         }
 
         String[] genderOptions = getResources().getStringArray(R.array.jenis_kelamin_array);
-        Spinner spinnerGender = findViewById(R.id.e_jenis);
+
         ArrayAdapter<String> genderAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, genderOptions);
         genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 

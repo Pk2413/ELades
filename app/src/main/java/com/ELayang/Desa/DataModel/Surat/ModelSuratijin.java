@@ -6,7 +6,7 @@ public class ModelSuratijin {
     private String tempat;
     private String tanggal;
     private String Agama;
-    private String Jenis_Kelamin;
+    private String Jenis_kelamin;
     private String Kewarganegaraan;
     private String Pekerjaan;
     private String Alamat;
@@ -71,12 +71,12 @@ public class ModelSuratijin {
         Agama = agama;
     }
 
-    public String getJenis_Kelamin() {
-        return Jenis_Kelamin;
+    public String getJenis_kelamin() {
+        return Jenis_kelamin;
     }
 
-    public void setJenis_Kelamin(String jenis_Kelamin) {
-        Jenis_Kelamin = jenis_Kelamin;
+    public void setJenis_kelamin(String jenis_kelamin) {
+        Jenis_kelamin = jenis_kelamin;
     }
 
     public String getKewarganegaraan() {

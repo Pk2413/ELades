@@ -14,16 +14,14 @@ public class ResponSuratijin {
         this.kode = kode;
     }
 
-    String Pesan;
-
-
+    private String pesan;
 
     public String getPesan() {
-        return Pesan;
+        return pesan;
     }
 
     public void setPesan(String pesan) {
-        Pesan = pesan;
+        this.pesan = pesan;
     }
 
     ArrayList<ModelSuratijin> data;

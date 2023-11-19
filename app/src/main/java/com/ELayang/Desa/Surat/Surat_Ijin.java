@@ -30,6 +30,7 @@ import com.ELayang.Desa.R;
 import org.chromium.base.Log;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -46,6 +47,7 @@ public class Surat_Ijin extends AppCompatActivity {
             kewarganegaraan, agama, pekerjaan, alamat, tempat_kerja, bagian, tanggal, alasan;
 
     Button kirim, update;
+    Spinner spinnerGender;
 
     private boolean hasilCek = true;
 
@@ -69,6 +71,8 @@ public class Surat_Ijin extends AppCompatActivity {
         bagian = findViewById(R.id.e_bagian);
         tanggal = findViewById(R.id.e_tanggal_bawah);
         alasan = findViewById(R.id.e_alasan);
+
+        spinnerGender = findViewById(R.id.e_jenis);
 
         tanggal.setFocusableInTouchMode(false);
         tanggal.setOnClickListener(v -> {
@@ -105,7 +109,7 @@ public class Surat_Ijin extends AppCompatActivity {
          update = findViewById(R.id.update);
 
         String[] genderOptions = getResources().getStringArray(R.array.jenis_kelamin_array);
-        Spinner spinnerGender = findViewById(R.id.e_jenis);
+
         ArrayAdapter<String> genderAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, genderOptions);
         genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerGender.setAdapter(genderAdapter);
@@ -149,6 +153,12 @@ public class Surat_Ijin extends AppCompatActivity {
                         bagian.setText(model.getBagian());
                         tanggal.setText(model.getTanggal_Ijin());
                         alasan.setText(model.getAlasan());
+
+                        String jenis = model.getJenis_kelamin();
+
+                        String[] jeniskelamin = getResources().getStringArray(R.array.jenis_kelamin_array);
+                        int index = Arrays.asList(jeniskelamin).indexOf(jenis);
+                        spinnerGender.setSelection(index);
                     }else{
                         Toast.makeText(Surat_Ijin.this, response.body().getPesan(), Toast.LENGTH_SHORT).show();
                     }
@@ -163,6 +173,47 @@ public class Surat_Ijin extends AppCompatActivity {
         } else {
             update.setVisibility(View.GONE);
         }
+
+        update.setOnClickListener(v->{
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Apakah data yang anda masukan sudah benar?")
+                    .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            String kode ="0";
+                            String tempat_tanggal_lahir = tempat_tgl_lahir.getText() + ", " + tgl_lahir.getText();
+                         APIRequestData apiRequestData = RetroServer.konekRetrofit().create(APIRequestData.class);
+                         Call<ResponSuratijin> call = apiRequestData.updatesuratijin(nopengajuan,kode,nama.getText().toString(),
+                                 nik.getText().toString(), selectedGender, tempat_tanggal_lahir, kewarganegaraan.getText().toString(),
+                                 agama.getText().toString(), pekerjaan.getText().toString(), alamat.getText().toString(),
+                                 tempat_kerja.getText().toString(), bagian.getText().toString(), tanggal.getText().toString(),
+                                 alasan.getText().toString());
+                         call.enqueue(new Callback<ResponSuratijin>() {
+                             @Override
+                             public void onResponse(Call<ResponSuratijin> call, Response<ResponSuratijin> response) {
+                                 if(response.body().isKode()){
+                                     Toast.makeText(Surat_Ijin.this, response.body().getPesan(), Toast.LENGTH_SHORT).show();
+                                     finish();
+                                 }else {
+                                     Toast.makeText(Surat_Ijin.this, response.body().getPesan(), Toast.LENGTH_SHORT).show();
+                                 }
+                             }
+
+                             @Override
+                             public void onFailure(Call<ResponSuratijin> call, Throwable t) {
+                                 Log.e("error update surat_ijin" , t.getMessage());
+                             }
+                         });
+                        }
+                    })
+                    .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    })
+                    .show();
+        });
 
 
 //        kirim.setEnabled(true);

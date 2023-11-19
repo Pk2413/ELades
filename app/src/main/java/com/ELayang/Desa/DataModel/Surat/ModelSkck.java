@@ -12,6 +12,15 @@ public class ModelSkck {
     private String status_perkawinan;
     private String pekerjaan;
     private String tempat_tinggal;
+    private String jenis_kelamin;
+
+    public String getJenis_kelamin() {
+        return jenis_kelamin;
+    }
+
+    public void setJenis_kelamin(String jenis_kelamin) {
+        this.jenis_kelamin = jenis_kelamin;
+    }
 
     public String getNama() {
         return nama;
