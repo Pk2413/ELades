@@ -3,6 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.C2D_MESSAGE" />
+
 
     <application
         android:allowBackup="true"
@@ -15,11 +21,27 @@
         android:theme="@style/Theme.ELades"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <!-- Perbaiki typo pada nama channel -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="prayoga"/>
+
+        <!-- Perbaiki typo pada nama service -->
+        <service
+            android:name=".Asset.Notifikasi.NotificationService"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE"/>
+            </intent-filter>
+        </service>
+
+
         <activity
             android:name=".Menu.ganti_password"
             android:exported="false" />
         <activity
-            android:name=".Asset.ImagePagerAdapter"
+            android:name=".Asset.imagePagerAdapter"
             android:exported="false" />
         <activity
             android:name=".Surat.SKTM"

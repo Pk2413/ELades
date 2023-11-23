@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,10 +17,12 @@ import android.widget.Toast;
 
 import com.ELayang.Desa.API.APIRequestData;
 import com.ELayang.Desa.API.RetroServer;
+import com.ELayang.Desa.Asset.Notifikasi.NotificationService;
 import com.ELayang.Desa.Asset.imagePagerAdapter;
 import com.ELayang.Desa.DataModel.StatusDasboardModel;
 import com.ELayang.Desa.DataModel.StatusDasboardRespon;
 import com.ELayang.Desa.R;
+import com.ELayang.Desa.menu;
 
 import org.w3c.dom.Text;
 
@@ -73,9 +76,21 @@ public class dashboard extends Fragment {
             public void onResponse(Call<StatusDasboardRespon> call, Response<StatusDasboardRespon> response) {
                 if (response.body().isKode()) {
                     StatusDasboardModel model = response.body().getData().get(0);
-                    selesai.setText(model.getSelesai());
-                    tolak.setText(model.getTolak());
-                    masuk.setText(model.getMasuk());
+                    if( model.getSelesai() != null) {
+                        selesai.setText(model.getSelesai());
+                    }else{
+                        selesai.setText("0");
+                    }
+                    if(model.getTolak() != null){
+                        tolak.setText(model.getTolak());
+                    }else{
+                        tolak.setText("0");
+                    }
+                    if(model.getMasuk() != null) {
+                        masuk.setText(model.getMasuk());
+                    }else{
+                        masuk.setText("0");
+                    }
 
                 } else {
                     selesai.setText("0");

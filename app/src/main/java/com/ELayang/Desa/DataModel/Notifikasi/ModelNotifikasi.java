@@ -1,18 +1,38 @@
-package com.ELayang.Desa.Asset.Adapter;
+package com.ELayang.Desa.DataModel.Notifikasi;
+
+import java.util.ArrayList;
 
 public class ModelNotifikasi {
 
+
+    private String id;
     private String nopengajuan;
     private String kode;
     private String tanggal;
-    private String keterangan;
+    private String status;
+    private String alasan;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public ModelNotifikasi(String nopengajuan, String kode, String tanggal, String keterangan) {
         this.nopengajuan = nopengajuan;
         this.kode = kode;
         this.tanggal = tanggal;
-        this.keterangan = keterangan;
+        this.alasan = keterangan;
     }
 
     public String getNopengajuan() {
@@ -39,11 +59,11 @@ public class ModelNotifikasi {
         this.tanggal = tanggal;
     }
 
-    public String getKeterangan() {
-        return keterangan;
+    public String getAlasan() {
+        return alasan;
     }
 
-    public void setKeterangan(String keterangan) {
-        this.keterangan = keterangan;
+    public void setAlasan(String alasan) {
+        this.alasan = alasan;
     }
 }

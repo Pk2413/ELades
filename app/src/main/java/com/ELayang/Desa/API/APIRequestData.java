@@ -4,6 +4,7 @@ import com.ELayang.Desa.DataModel.Akun.ResponUpdate;
 import com.ELayang.Desa.DataModel.Lupa_Password.ResponPassword1;
 import com.ELayang.Desa.DataModel.Lupa_Password.ResponPassword2;
 import com.ELayang.Desa.DataModel.Akun.ResponLogin;
+import com.ELayang.Desa.DataModel.Notifikasi.ResponNotifikasi;
 import com.ELayang.Desa.DataModel.Register.ResponOTP;
 import com.ELayang.Desa.DataModel.Register.ResponRegister1;
 import com.ELayang.Desa.DataModel.Register.ResponRegister2;
@@ -250,6 +251,17 @@ public interface APIRequestData {
             @Field("Bagian") String Bagian,
             @Field("Tanggal") String Tanggal,
             @Field("Alasan") String Alasan
+    );
+
+    @FormUrlEncoded
+    @POST("notifikasi.php")
+    Call<ResponNotifikasi> notif(
+            @Field("username") String username
+    );
+    @FormUrlEncoded
+    @POST("notifikasi_popup.php")
+    Call<ResponNotifikasi> notifikasi_popup(
+            @Field("username") String username
     );
 };
 

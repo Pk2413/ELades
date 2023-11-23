@@ -15,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ELayang.Desa.Asset.Notifikasi.NotificationService;
 import com.ELayang.Desa.Login.login;
 import com.ELayang.Desa.Menu.Notifikasi;
 import com.ELayang.Desa.Menu.akun;
@@ -38,16 +39,16 @@ public class menu extends AppCompatActivity {
     FloatingActionButton fab;
     private String KEY_NAME = "NAMA";
 
-    @SuppressLint("MissingInflatedId")
+//    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
 //        mAuth = FirebaseAuth.getInstance();
-        GoogleApiClient mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API)
-                .build();
+//        GoogleApiClient mGoogleApiClient = new GoogleApiClient.Builder(this)
+//                .addApi(Auth.GOOGLE_SIGN_IN_API)
+//                .build();
 
         bottomNavigationView = findViewById(R.id.bottomNavView);
 
