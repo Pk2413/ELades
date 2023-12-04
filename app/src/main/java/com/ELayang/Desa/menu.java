@@ -45,10 +45,8 @@ public class menu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-//        mAuth = FirebaseAuth.getInstance();
-//        GoogleApiClient mGoogleApiClient = new GoogleApiClient.Builder(this)
-//                .addApi(Auth.GOOGLE_SIGN_IN_API)
-//                .build();
+        Intent serviceIntent = new Intent(this, NotificationService.class);
+        NotificationService.enqueueWork(this, serviceIntent);
 
         bottomNavigationView = findViewById(R.id.bottomNavView);
 
@@ -67,10 +65,7 @@ public class menu extends AppCompatActivity {
                 }else if (item.getItemId() == R.id.notifikasi) {
                     selectedFragment = new Notifikasi();
                 }
-//                else if (item.getItemId() == R.id.permintaan){
-//                    Intent buka = new Intent(menu.this, permintaan_surat.class);
-//                    startActivity(buka);
-//                }
+
                 else if (item.getItemId() == R.id.riwayat) {
                     selectedFragment = new riwayat_surat();
                 }else if (item.getItemId() == R.id.profil) {

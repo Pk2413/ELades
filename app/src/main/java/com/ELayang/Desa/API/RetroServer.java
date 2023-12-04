@@ -6,8 +6,9 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetroServer {
-    private static String server = "192.168.0.107";
+    private static String server = "192.168.1.9";
     private static final String baseURL = "http://" + server + "/coding/ELaDes%20WEB/DatabaseMobile/";
+    private static final String finalurl = "http://e-lades.tifnganjuk.com/DatabaseMobile/";
 
     private static Retrofit retro;
 
@@ -24,7 +25,7 @@ public class RetroServer {
 
             // Inisialisasi Retrofit dengan interceptor
             retro = new Retrofit.Builder()
-                    .baseUrl(baseURL)
+                    .baseUrl(finalurl)
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(client)
                     .build();

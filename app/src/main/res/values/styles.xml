@@ -17,11 +17,13 @@
 
     <style name="login" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <!-- Ubah warna outline (garis tepi) -->
-        <item name="boxStrokeColor">@color/outline</item>
+        <item name="boxStrokeColor">@color/black</item>
         <item name="boxBackgroundColor">@color/edittext</item>
+        <item name="android:textColorHint">@color/black</item>
+<!--        <item name="android:textColorHighlight">@color/white</item>-->
 <!--                <corners android:radius="20dp" />-->
         <!-- Ubah warna teks hint -->
-        <item name="hintTextColor">@color/outline</item>
+        <item name="hintTextColor">@color/black</item>
     </style>
     <style name="MyTextInputEditTextStyle" parent="Widget.MaterialComponents.TextInputEditText.OutlinedBox">
         <!-- Atur warna background -->

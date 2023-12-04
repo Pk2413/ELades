@@ -4,11 +4,13 @@ import java.util.ArrayList;
 
 public class ResponNotifikasi {
 
-    private  int kode;
+    private int kode;
     private String status;
-private String nopengajuan;
-    private  String pesan;
+    private String nopengajuan;
+    private String pesan;
     private String alasan;
+    private String tanggal;
+    private String jam;
 
     ArrayList<ModelNotifikasi> data;
 
@@ -58,5 +60,21 @@ private String nopengajuan;
 
     public void setPesan(String pesan) {
         this.pesan = pesan;
+    }
+
+    public String getTanggal() {
+        return tanggal;
+    }
+
+    public void setTanggal(String tanggal) {
+        this.tanggal = tanggal;
+    }
+
+    public String getJam() {
+        return jam;
+    }
+
+    public void setJam(String jam) {
+        this.jam = jam;
     }
 }

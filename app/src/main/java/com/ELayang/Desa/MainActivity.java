@@ -40,27 +40,6 @@ public class MainActivity extends AppCompatActivity {
         }, 500);
 
         }else {
-
-
-//            APIRequestData apiRequestData = RetroServer.konekRetrofit().create(APIRequestData.class);
-//            Call<ResponLogin> call = apiRequestData.login(username, password);
-//
-//            call.enqueue(new Callback<ResponLogin>() {
-//                @Override
-//                public void onResponse(Call<ResponLogin> call, Response<ResponLogin> response) {
-//                    if(response.body().kode ==1 ){
-//                        Intent pindah;
-//                        pindah = new Intent(MainActivity.this, menu.class);
-//                        startActivity(pindah);
-//                        finish();
-//                    }
-//                }
-//
-//                @Override
-//                public void onFailure(Call<ResponLogin> call, Throwable t) {
-//
-//                }
-//            });
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {

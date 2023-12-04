@@ -138,10 +138,8 @@ public class SKCK extends AppCompatActivity {
         }
 
         String[] genderOptions = getResources().getStringArray(R.array.jenis_kelamin_array);
-
         ArrayAdapter<String> genderAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, genderOptions);
         genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         spinnerGender.setAdapter(genderAdapter);
         spinnerGender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -175,7 +173,9 @@ public class SKCK extends AppCompatActivity {
             cek(tempat_tinggal);
 //            cek(tanggal);
 
-            if (!hasilCek) {
+            if(nik.length() < 13){
+                Toast.makeText(this, "Lengkapi Nik anda", Toast.LENGTH_SHORT).show();
+            } else if (!hasilCek) {
                 Toast.makeText(this, "Isi semua formulir terlebih dahulu", Toast.LENGTH_SHORT).show();
                 reset();
             } else {
@@ -230,6 +230,19 @@ public class SKCK extends AppCompatActivity {
 //        update.setEnabled(true);
         update.setOnClickListener(v -> {
 
+            cek(nik);
+            cek(nama);
+            cek(tempat_lahir);
+            cek(kebangsaan);
+            cek(agama);
+            cek(status);
+            cek(pekerjaan);
+            cek(tempat_tinggal);
+
+            if (!hasilCek) {
+                Toast.makeText(this, "Isi semua formulir terlebih dahulu", Toast.LENGTH_SHORT).show();
+                reset();
+            } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("Apakah data yang anda masukan sudah benar?")
                     .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
@@ -238,7 +251,8 @@ public class SKCK extends AppCompatActivity {
                             String tempat_tanggal_lahir = tempat_lahir.getText().toString() + ", " + tanggal.getText().toString();
                             String kode = "1";
                             APIRequestData apiRequestData = RetroServer.konekRetrofit().create(APIRequestData.class);
-                            Call<ResponSkck> call = apiRequestData.updateskck(nopengajuan, kode, nama.getText().toString(), nik.getText().toString()
+                            Call<ResponSkck> call = apiRequestData.updateskck(nopengajuan, kode, nama.getText().toString()
+                                    , nik.getText().toString()
                                     , tempat_tanggal_lahir, kebangsaan.getText().toString(), agama.getText().toString()
                                     , status.getText().toString(), pekerjaan.getText().toString()
                                     , tempat_tinggal.getText().toString(), selectedGender);
@@ -246,10 +260,10 @@ public class SKCK extends AppCompatActivity {
                             call.enqueue(new Callback<ResponSkck>() {
                                 @Override
                                 public void onResponse(Call<ResponSkck> call, Response<ResponSkck> response) {
-                                    if (response.body().kode){
+                                    if (response.body().kode) {
                                         Toast.makeText(SKCK.this, response.body().getPesan(), Toast.LENGTH_SHORT).show();
                                         finish();
-                                    }else {
+                                    } else {
                                         Toast.makeText(SKCK.this, response.body().getPesan(), Toast.LENGTH_SHORT).show();
                                     }
                                 }
@@ -268,6 +282,7 @@ public class SKCK extends AppCompatActivity {
                         }
                     })
                     .show();
+        }
         });
 
 
@@ -307,8 +322,6 @@ public class SKCK extends AppCompatActivity {
             editText.setError("Harus Diisi");
             editText.requestFocus();
             hasilCek = false;
-        } else {
-            hasilCek = true;
         }
     }
 

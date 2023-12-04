@@ -175,44 +175,62 @@ public class Surat_Ijin extends AppCompatActivity {
         }
 
         update.setOnClickListener(v->{
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("Apakah data yang anda masukan sudah benar?")
-                    .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            String kode ="0";
-                            String tempat_tanggal_lahir = tempat_tgl_lahir.getText() + ", " + tgl_lahir.getText();
-                         APIRequestData apiRequestData = RetroServer.konekRetrofit().create(APIRequestData.class);
-                         Call<ResponSuratijin> call = apiRequestData.updatesuratijin(nopengajuan,kode,nama.getText().toString(),
-                                 nik.getText().toString(), selectedGender, tempat_tanggal_lahir, kewarganegaraan.getText().toString(),
-                                 agama.getText().toString(), pekerjaan.getText().toString(), alamat.getText().toString(),
-                                 tempat_kerja.getText().toString(), bagian.getText().toString(), tanggal.getText().toString(),
-                                 alasan.getText().toString());
-                         call.enqueue(new Callback<ResponSuratijin>() {
-                             @Override
-                             public void onResponse(Call<ResponSuratijin> call, Response<ResponSuratijin> response) {
-                                 if(response.body().isKode()){
-                                     Toast.makeText(Surat_Ijin.this, response.body().getPesan(), Toast.LENGTH_SHORT).show();
-                                     finish();
-                                 }else {
-                                     Toast.makeText(Surat_Ijin.this, response.body().getPesan(), Toast.LENGTH_SHORT).show();
-                                 }
-                             }
+            cek(nama);
+            cek(nik);
+            cek(tempat_tgl_lahir);
+            cek(tempat_kerja);
+            cek(tgl_lahir);
+            cek(kewarganegaraan);
+            cek(agama);
+            cek(pekerjaan);
+            cek(alamat);
+            cek(alasan);
+            cek(bagian);
+            cek(tanggal);
 
-                             @Override
-                             public void onFailure(Call<ResponSuratijin> call, Throwable t) {
-                                 Log.e("error update surat_ijin" , t.getMessage());
-                             }
-                         });
-                        }
-                    })
-                    .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
+            if (hasilCek == false) {
+                Toast.makeText(this, "Isi semua formulir terlebih dahulu", Toast.LENGTH_SHORT).show();
+                reset();
+            } else {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage("Apakah data yang anda masukan sudah benar?")
+                        .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                String kode = "1";
+                                String tempat_tanggal_lahir = tempat_tgl_lahir.getText() + ", " + tgl_lahir.getText();
+                                APIRequestData apiRequestData = RetroServer.konekRetrofit().create(APIRequestData.class);
+                                Call<ResponSuratijin> call = apiRequestData.updatesuratijin(nopengajuan, kode, nama.getText().toString(),
+                                        nik.getText().toString(), selectedGender, tempat_tanggal_lahir, kewarganegaraan.getText().toString(),
+                                        agama.getText().toString(), pekerjaan.getText().toString(), alamat.getText().toString(),
+                                        tempat_kerja.getText().toString(), bagian.getText().toString(), tanggal.getText().toString(),
+                                        alasan.getText().toString());
+                                call.enqueue(new Callback<ResponSuratijin>() {
+                                    @Override
+                                    public void onResponse(Call<ResponSuratijin> call, Response<ResponSuratijin> response) {
+                                        if (response.body().isKode()) {
+                                            Toast.makeText(Surat_Ijin.this, response.body().getPesan(), Toast.LENGTH_SHORT).show();
+                                            finish();
+                                        } else {
+                                            Toast.makeText(Surat_Ijin.this, response.body().getPesan(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
 
-                        }
-                    })
-                    .show();
+                                    @Override
+                                    public void onFailure(Call<ResponSuratijin> call, Throwable t) {
+                                        Log.e("error update surat_ijin", t.getMessage());
+                                    }
+                                });
+                            }
+                        })
+                        .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        })
+                        .show();
+            }
         });
 
 
@@ -231,7 +249,9 @@ public class Surat_Ijin extends AppCompatActivity {
             cek(bagian);
             cek(tanggal);
 
-            if (hasilCek == false) {
+            if(nik.length() < 13){
+                Toast.makeText(this, "Lengkapi Nik anda", Toast.LENGTH_SHORT).show();
+            } else if (hasilCek == false) {
                 Toast.makeText(this, "Isi semua formulir terlebih dahulu", Toast.LENGTH_SHORT).show();
                 reset();
             } else {
@@ -317,8 +337,6 @@ public class Surat_Ijin extends AppCompatActivity {
             editText.setError("Harus Diisi");
             editText.requestFocus();
             hasilCek = false;
-        }else {
-            hasilCek = true;
         }
     }
     private void reset(){

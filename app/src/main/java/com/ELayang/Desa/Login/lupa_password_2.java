@@ -59,7 +59,7 @@ public class lupa_password_2 extends AppCompatActivity {
             } else if(pass2.getText().toString().isEmpty()) {
                 pass2.setError("Password Harus Diisi");
                 pass2.requestFocus();
-            }else if(pass2.length() <6) {
+            }else if(pass2.length() <=6) {
                 pass1.setError("Password Harus Lebih dari 6 karakter");
                 pass1.requestFocus();
             } else if (otp.getText().toString().isEmpty()) {

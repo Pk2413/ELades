@@ -57,6 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 style="@style/login"
+                app:hintEnabled="false"
                 android:layout_marginStart="50dp"
                 android:layout_marginTop="50dp"
                 android:layout_marginEnd="50dp">
@@ -67,6 +68,7 @@
                     android:hint="USERNAME"
                     android:inputType="textEmailAddress"
                     android:textColor="@color/black"
+
                     android:textColorHighlight="@color/black"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -75,6 +77,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 style="@style/login"
+                app:hintEnabled="false"
                 android:layout_marginStart="50dp"
                 android:layout_marginEnd="50dp"
                 android:layout_marginTop="25dp"

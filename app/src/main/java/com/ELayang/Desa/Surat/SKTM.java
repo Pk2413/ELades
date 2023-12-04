@@ -218,6 +218,7 @@ public class SKTM extends AppCompatActivity {
             cek(alamatanak);
             cek(tempatanak);
 
+
             if (hasilCek == false) {
                 Toast.makeText(this, "Isi semua formulir terlebih dahulu", Toast.LENGTH_SHORT).show();
                 reset();
@@ -370,10 +371,7 @@ public class SKTM extends AppCompatActivity {
             editText.setError("Harus Diisi");
             editText.requestFocus();
             hasilCek = false;
-        } else {
-            hasilCek = true;
         }
-//        return hasilCek;
     }
 
 

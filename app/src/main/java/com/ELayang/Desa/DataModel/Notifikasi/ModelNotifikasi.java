@@ -28,13 +28,6 @@ public class ModelNotifikasi {
         this.status = status;
     }
 
-    public ModelNotifikasi(String nopengajuan, String kode, String tanggal, String keterangan) {
-        this.nopengajuan = nopengajuan;
-        this.kode = kode;
-        this.tanggal = tanggal;
-        this.alasan = keterangan;
-    }
-
     public String getNopengajuan() {
         return nopengajuan;
     }

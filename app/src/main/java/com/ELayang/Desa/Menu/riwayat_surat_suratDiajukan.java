@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,7 +59,6 @@ public class riwayat_surat_suratDiajukan extends Fragment {
                         // Tambahkan data surat ke ArrayList dan set up RecyclerView
                         ModelDiajukan user = response.body().getData().get(0);
                         data.addAll(list);
-
                         SuratDiajukan adapter = new SuratDiajukan(data);
                         recyclerView.setAdapter(adapter);
                     } else {
@@ -72,7 +72,7 @@ public class riwayat_surat_suratDiajukan extends Fragment {
 
             @Override
             public void onFailure(Call<ResponDiajukan> call, Throwable t) {
-                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.e("error pada suratDiajukan",t.getMessage());
             }
         });
         return view;
