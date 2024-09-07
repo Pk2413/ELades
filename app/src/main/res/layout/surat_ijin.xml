@@ -178,7 +178,7 @@
                     android:id="@+id/e_kebangsaan"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:hint="Contoh : WNI"
+                    android:hint="WNA/WNI"
                     android:inputType="text"
                     android:background="@drawable/esurat"
                     android:lines="1" />

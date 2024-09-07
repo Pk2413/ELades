@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="@color/button_riwayat"
-                android:text="Surat dijukan"
+                android:text="Surat diajukan"
                 android:textAllCaps="false"
                 android:textColor="@color/black"
                 app:cornerRadius="20dp"/>

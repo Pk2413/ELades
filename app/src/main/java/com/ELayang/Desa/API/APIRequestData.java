@@ -53,7 +53,6 @@ public interface APIRequestData {
             @Field("tempat_tinggal") String tinggal,
             @Field("username") String username,
             @Field("jenis_kelamin") String jenis_kelamin
-
     );
 
     @FormUrlEncoded

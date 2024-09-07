@@ -53,18 +53,18 @@ ImageButton kembali;
 
             call.enqueue(new Callback<ResponRegister2>() {
                 @Override
-                public void onResponse(Call<ResponRegister2> call, Response<ResponRegister2> response) {
-                    if (response.body().kode == 0) {
+               public void onResponse(Call<ResponRegister2> call, Response<ResponRegister2> response) {
+                            if (response.body().kode == 0) {
 
-                        // Simpan semua data pengguna ke SharedPreferences
+                                // Simpan semua data pengguna ke SharedPreferences
 //                    ModelRegister1 user = response.body().getData().get(0);
 
-                        Intent pindah = new Intent(register2.this, register3.class);
-                        startActivity(pindah);
-                        finish();
+                                Intent pindah = new Intent(register2.this, register3.class);
+                                startActivity(pindah);
+                                finish();
 
-                    } else if (response.body().kode == 1) {
-                        Toast.makeText(register2.this, "Kode otp salah ", Toast.LENGTH_SHORT).show();
+                            } else if (response.body().kode == 1) {
+                                Toast.makeText(register2.this, "Kode otp salah ", Toast.LENGTH_SHORT).show();
                     }
                 }
 

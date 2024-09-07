@@ -32,7 +32,6 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Locale;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -201,8 +200,6 @@ public class SKCK extends AppCompatActivity {
                                         ResponSkck responSkck = response.body();
                                         if (responSkck.isKode()) {
                                             Toast.makeText(SKCK.this, "berhasil menambahkan", Toast.LENGTH_SHORT).show();
-
-
                                             finish();
                                         } else {
                                             kirim.setEnabled(true);

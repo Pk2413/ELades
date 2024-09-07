@@ -67,8 +67,7 @@ public class login extends AppCompatActivity {
 //        mAuth = FirebaseAuth.getInstance();
 
         EditText username = findViewById(R.id.username), password = findViewById(R.id.password);
-        username.setText("user");
-        password.setText("12345678");
+
         masuk = findViewById(R.id.masuk);
         masuk.setOnClickListener(view -> {
 

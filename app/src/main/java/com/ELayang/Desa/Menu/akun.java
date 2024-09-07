@@ -77,14 +77,6 @@ public class akun extends Fragment implements GoogleApiClient.OnConnectionFailed
         return view;
     }
 
-    private void signOut() {
-        if (getActivity() instanceof login) {
-            ((login) getActivity()).signOut();
-//            mGoogleSignInClient.signOut();
-
-//            ((login) getActivity()).signOutAndClearCache();
-        }
-    }
 
 
     @Override

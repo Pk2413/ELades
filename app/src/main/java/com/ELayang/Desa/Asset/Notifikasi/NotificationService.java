@@ -99,7 +99,9 @@ public class NotificationService extends JobIntentService {
                            } else if (status.equals("Selesai")) {
                                 showNotifikasiSelesai();
                            }
-                        }else{}
+                        }else{
+
+                        }
 
                     } else if (response.body().getKode() == 0) {
 

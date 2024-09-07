@@ -180,7 +180,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:background="@drawable/esurat"
-                    android:hint="KEBANGSAAN"
+                    android:hint="WNA / WNI"
                     android:inputType="text"
                     android:lines="1" />
 
@@ -310,7 +310,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:background="@drawable/esurat"
-                    android:hint="TEMPAT TINGGAL"
+                    android:hint="Desa dan k\Kecamatan"
                     android:inputType="text"
                     android:lines="1"
                     android:maxLines="3" />
